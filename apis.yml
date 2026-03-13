@@ -1,0 +1,69 @@
+name: AWS Data Pipeline API
+description: AWS Data Pipeline is a web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals. With AWS Data Pipeline, you can regularly access your data where it is stored, transform and process it at scale, and efficiently transfer the results to AWS services such as Amazon S3, Amazon RDS, Amazon DynamoDB, and Amazon EMR.
+image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+url: https://aws.amazon.com/datapipeline/
+created: '2024-01-15'
+modified: '2026-03-13'
+apis:
+- name: AWS Data Pipeline API
+  description: >-
+    The AWS Data Pipeline API provides a web service for processing and moving
+    data between different AWS compute and storage services as well as
+    on-premises data sources at specified intervals. The API allows you to create
+    pipeline definitions, schedule data transformations, set up retry and failure
+    handling logic, and monitor pipeline execution. It supports data-driven
+    workflows that can access data from Amazon S3, Amazon RDS, Amazon DynamoDB,
+    and Amazon EMR.
+  image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Data Processing
+  - ETL
+  - Workflows
+  - AWS
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-openapi.yml
+  - type: Pricing
+    url: https://aws.amazon.com/datapipeline/pricing/
+  - type: Getting Started
+    url: https://aws.amazon.com/datapipeline/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/datapipeline/faqs/
+common:
+- type: Portal
+  url: https://aws.amazon.com/
+- type: Website
+  url: https://aws.amazon.com/datapipeline/
+- type: Documentation
+  url: https://docs.aws.amazon.com/datapipeline/
+- type: Terms of Service
+  url: https://aws.amazon.com/service-terms/
+- type: Privacy Policy
+  url: https://aws.amazon.com/privacy/
+- type: Support
+  url: https://aws.amazon.com/premiumsupport/
+- type: GitHub Organization
+  url: https://github.com/aws
+- type: Console
+  url: https://console.aws.amazon.com/datapipeline/
+- type: Sign Up
+  url: https://signin.aws.amazon.com/signup?request_type=register
+- type: Login
+  url: https://aws.amazon.com/console/
+- type: Status
+  url: https://health.aws.amazon.com/health/status
+- type: Contact
+  url: https://aws.amazon.com/contact-us/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+tags:
+- Data Processing
+- ETL
+- Workflows
+- AWS

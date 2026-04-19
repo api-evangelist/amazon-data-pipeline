@@ -1,0 +1,956 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Pipeline API
+  description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
+  version: '2012-10-29'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+
+servers:
+  - url: https://datapipeline.amazonaws.com
+    description: AWS Data Pipeline API
+
+tags:
+  - name: Pipelines
+    description: Operations for managing data pipelines
+  - name: Pipeline Objects
+    description: Operations for managing pipeline object definitions
+  - name: Pipeline Runs
+    description: Operations for managing pipeline execution and task runs
+  - name: Tags
+    description: Operations for managing pipeline tags
+
+security:
+  - awsSignatureV4: []
+
+paths:
+  /?Action=CreatePipeline:
+    post:
+      operationId: createPipeline
+      summary: Create Pipeline
+      description: Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline.
+      tags:
+        - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: MyDataPipeline
+                  uniqueId: my-data-pipeline-001
+                  description: Pipeline for processing daily sales data
+                  tags:
+                    - key: Environment
+                      value: Production
+      responses:
+        '200':
+          description: Pipeline created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineId: df-0937003B3GENERIC4EXAMPLE
+
+  /?Action=DeletePipeline:
+    post:
+      operationId: deletePipeline
+      summary: Delete Pipeline
+      description: Deletes a pipeline, its pipeline definition, and its run history. You cannot query or restore a deleted pipeline.
+      tags:
+        - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+      responses:
+        '200':
+          description: Pipeline deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+
+  /?Action=DescribePipelines:
+    post:
+      operationId: describePipelines
+      summary: Describe Pipelines
+      description: Retrieves metadata about one or more pipelines. The information retrieved includes the name, description, inactivity timeout, and the list of the pipeline's schedules.
+      tags:
+        - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DescribePipelinesRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineIds:
+                    - df-0937003B3GENERIC4EXAMPLE
+      responses:
+        '200':
+          description: Pipeline descriptions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribePipelinesOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineDescriptionList:
+                      - pipelineId: df-0937003B3GENERIC4EXAMPLE
+                        name: MyDataPipeline
+                        description: Pipeline for processing daily sales data
+                        pipelineState: SCHEDULED
+                        fields:
+                          - key: '@pipelineState'
+                            stringValue: SCHEDULED
+
+  /?Action=ListPipelines:
+    post:
+      operationId: listPipelines
+      summary: List Pipelines
+      description: Lists the pipeline identifiers for all active pipelines that you have permission to access.
+      tags:
+        - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListPipelinesRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  marker: null
+      responses:
+        '200':
+          description: List of pipelines returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPipelinesOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineIdList:
+                      - id: df-0937003B3GENERIC4EXAMPLE
+                        name: MyDataPipeline
+                    hasMoreResults: false
+
+  /?Action=PutPipelineDefinition:
+    post:
+      operationId: putPipelineDefinition
+      summary: Put Pipeline Definition
+      description: Adds tasks, schedules, and preconditions to the specified pipeline. This operation is idempotent.
+      tags:
+        - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  pipelineObjects:
+                    - id: Schedule
+                      name: DailySchedule
+                      fields:
+                        - key: type
+                          stringValue: Schedule
+                        - key: startDateTime
+                          stringValue: '2024-01-15T00:00:00'
+                        - key: period
+                          stringValue: 1 Day
+                    - id: Default
+                      name: Default
+                      fields:
+                        - key: workerGroup
+                          stringValue: myWorkerGroup
+      responses:
+        '200':
+          description: Pipeline definition updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutPipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    errored: false
+                    validationErrors: []
+                    validationWarnings: []
+
+  /?Action=GetPipelineDefinition:
+    post:
+      operationId: getPipelineDefinition
+      summary: Get Pipeline Definition
+      description: Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition.
+      tags:
+        - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  version: active
+      responses:
+        '200':
+          description: Pipeline definition returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineObjects:
+                      - id: Schedule
+                        name: DailySchedule
+                        fields:
+                          - key: type
+                            stringValue: Schedule
+                    parameterObjects: []
+                    parameterValues: []
+
+  /?Action=ValidatePipelineDefinition:
+    post:
+      operationId: validatePipelineDefinition
+      summary: Validate Pipeline Definition
+      description: Validates the specified pipeline definition to ensure that it is well formed and can be run without error.
+      tags:
+        - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidatePipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  pipelineObjects:
+                    - id: Schedule
+                      name: DailySchedule
+                      fields:
+                        - key: type
+                          stringValue: Schedule
+      responses:
+        '200':
+          description: Validation results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidatePipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    errored: false
+                    validationErrors: []
+                    validationWarnings: []
+
+  /?Action=ActivatePipeline:
+    post:
+      operationId: activatePipeline
+      summary: Activate Pipeline
+      description: Validates the specified pipeline and starts processing pipeline tasks. If the pipeline does not pass validation, activation fails.
+      tags:
+        - Pipeline Runs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivatePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  parameterValues:
+                    - id: myVariable
+                      stringValue: myValue
+                  startTimestamp: '2024-01-15T00:00:00Z'
+      responses:
+        '200':
+          description: Pipeline activated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+
+  /?Action=DeactivatePipeline:
+    post:
+      operationId: deactivatePipeline
+      summary: Deactivate Pipeline
+      description: Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING state until the deactivation process completes.
+      tags:
+        - Pipeline Runs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivatePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  cancelActive: true
+      responses:
+        '200':
+          description: Pipeline deactivation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivatePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+
+  /?Action=QueryObjects:
+    post:
+      operationId: queryObjects
+      summary: Query Objects
+      description: Queries the specified pipeline for the names of objects that match the specified set of conditions.
+      tags:
+        - Pipeline Runs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryObjectsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  sphere: INSTANCE
+                  query:
+                    selectors:
+                      - fieldName: '@status'
+                        operator:
+                          type: EQ
+                          values:
+                            - RUNNING
+      responses:
+        '200':
+          description: Query results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryObjectsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    ids:
+                      - '@SomeActivity_2024-01-15T00:00:00'
+                    hasMoreResults: false
+
+  /?Action=DescribeObjects:
+    post:
+      operationId: describeObjects
+      summary: Describe Objects
+      description: Gets the object definitions for a set of objects associated with the pipeline.
+      tags:
+        - Pipeline Runs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DescribeObjectsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  objectIds:
+                    - '@SomeActivity_2024-01-15T00:00:00'
+      responses:
+        '200':
+          description: Object descriptions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribeObjectsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineObjects:
+                      - id: '@SomeActivity_2024-01-15T00:00:00'
+                        name: SomeActivity
+                        fields:
+                          - key: '@status'
+                            stringValue: RUNNING
+                    hasMoreResults: false
+
+  /?Action=AddTags:
+    post:
+      operationId: addTags
+      summary: Add Tags
+      description: Adds or modifies tags for the specified pipeline.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTagsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  tags:
+                    - key: CostCenter
+                      value: CC-001
+                    - key: Owner
+                      value: data-engineering
+      responses:
+        '200':
+          description: Tags added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddTagsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+
+  /?Action=RemoveTags:
+    post:
+      operationId: removeTags
+      summary: Remove Tags
+      description: Removes existing tags from the specified pipeline.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveTagsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  tagKeys:
+                    - CostCenter
+      responses:
+        '200':
+          description: Tags removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoveTagsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+
+components:
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
+
+  schemas:
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
+
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+        - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
+
+    PipelineObject:
+      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+      type: object
+      required:
+        - id
+        - name
+        - fields
+      properties:
+        id:
+          type: string
+          description: The identifier of the pipeline object
+        name:
+          type: string
+          description: The name of the pipeline object
+        fields:
+          type: array
+          description: Key-value pairs defining the object configuration
+          items:
+            $ref: '#/components/schemas/Field'
+
+    PipelineIdName:
+      description: Contains a pipeline identifier and name.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The pipeline identifier
+        name:
+          type: string
+          description: The pipeline name
+
+    PipelineDescription:
+      description: Contains pipeline metadata including name, description, fields, and tags.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier of the pipeline
+        name:
+          type: string
+          description: The name of the pipeline
+        description:
+          type: string
+          description: A description of the pipeline
+        pipelineState:
+          type: string
+          description: The current state of the pipeline
+          enum: [SCHEDULED, WAITING_FOR_RUNNER, RUNNING, SHUTTING_DOWN, FINISHED, FAILED, WAITING_ON_DEPENDENCIES, INACTIVE]
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    ValidationError:
+      description: An error found during pipeline definition validation.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the object that caused the error
+        errors:
+          type: array
+          items:
+            type: string
+
+    ValidationWarning:
+      description: A warning found during pipeline definition validation.
+      type: object
+      properties:
+        id:
+          type: string
+        warnings:
+          type: array
+          items:
+            type: string
+
+    CreatePipelineRequest:
+      description: Request body for creating a new pipeline.
+      type: object
+      required:
+        - name
+        - uniqueId
+      properties:
+        name:
+          type: string
+          description: The name of the pipeline
+        uniqueId:
+          type: string
+          description: A unique identifier for the pipeline, used to prevent duplicate pipeline creation
+        description:
+          type: string
+          description: A description of the pipeline
+        tags:
+          type: array
+          description: Tags to apply to the pipeline
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    CreatePipelineOutput:
+      description: Response after creating a pipeline.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier for the pipeline
+
+    DeletePipelineRequest:
+      description: Request body for deleting a pipeline.
+      type: object
+      required:
+        - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline to delete
+
+    DeletePipelineOutput:
+      description: Response after deleting a pipeline.
+      type: object
+
+    DescribePipelinesRequest:
+      description: Request body for describing one or more pipelines.
+      type: object
+      required:
+        - pipelineIds
+      properties:
+        pipelineIds:
+          type: array
+          description: The IDs of the pipelines to describe
+          items:
+            type: string
+
+    DescribePipelinesOutput:
+      description: Response containing pipeline descriptions.
+      type: object
+      properties:
+        pipelineDescriptionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineDescription'
+
+    ListPipelinesRequest:
+      description: Request body for listing pipelines.
+      type: object
+      properties:
+        marker:
+          type: string
+          description: The starting point for the results to be returned
+
+    ListPipelinesOutput:
+      description: Response containing a list of pipeline identifiers.
+      type: object
+      properties:
+        pipelineIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineIdName'
+        marker:
+          type: string
+          description: The starting point for the next page of results
+        hasMoreResults:
+          type: boolean
+
+    PutPipelineDefinitionRequest:
+      description: Request body for setting the pipeline definition.
+      type: object
+      required:
+        - pipelineId
+        - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          description: Parameter object definitions
+          items:
+            type: object
+        parameterValues:
+          type: array
+          description: Parameter value overrides
+          items:
+            type: object
+
+    PutPipelineDefinitionOutput:
+      description: Response after updating the pipeline definition.
+      type: object
+      properties:
+        errored:
+          type: boolean
+          description: Whether the definition has errors
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+
+    GetPipelineDefinitionRequest:
+      description: Request body for retrieving a pipeline definition.
+      type: object
+      required:
+        - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        version:
+          type: string
+          description: The version of the pipeline definition (active or latest)
+
+    GetPipelineDefinitionOutput:
+      description: Response containing the pipeline definition.
+      type: object
+      properties:
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          items:
+            type: object
+        parameterValues:
+          type: array
+          items:
+            type: object
+
+    ValidatePipelineDefinitionRequest:
+      description: Request body for validating a pipeline definition.
+      type: object
+      required:
+        - pipelineId
+        - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+
+    ValidatePipelineDefinitionOutput:
+      description: Response containing pipeline definition validation results.
+      type: object
+      properties:
+        errored:
+          type: boolean
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+
+    ActivatePipelineRequest:
+      description: Request body for activating a pipeline.
+      type: object
+      required:
+        - pipelineId
+      properties:
+        pipelineId:
+          type: string
+        parameterValues:
+          type: array
+          items:
+            type: object
+        startTimestamp:
+          type: string
+          format: date-time
+
+    ActivatePipelineOutput:
+      description: Response after activating a pipeline.
+      type: object
+
+    DeactivatePipelineRequest:
+      description: Request body for deactivating a pipeline.
+      type: object
+      required:
+        - pipelineId
+      properties:
+        pipelineId:
+          type: string
+        cancelActive:
+          type: boolean
+          description: Whether to cancel currently running activities
+
+    DeactivatePipelineOutput:
+      description: Response after deactivating a pipeline.
+      type: object
+
+    QueryObjectsRequest:
+      description: Request body for querying pipeline objects.
+      type: object
+      required:
+        - pipelineId
+        - sphere
+      properties:
+        pipelineId:
+          type: string
+        sphere:
+          type: string
+          description: Indicates whether the query applies to components or instances
+          enum: [COMPONENT, INSTANCE, ATTEMPT]
+        query:
+          type: object
+        marker:
+          type: string
+        limit:
+          type: integer
+
+    QueryObjectsOutput:
+      description: Response containing matching pipeline object IDs.
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+        marker:
+          type: string
+        hasMoreResults:
+          type: boolean
+
+    DescribeObjectsRequest:
+      description: Request body for describing pipeline objects.
+      type: object
+      required:
+        - pipelineId
+        - objectIds
+      properties:
+        pipelineId:
+          type: string
+        objectIds:
+          type: array
+          items:
+            type: string
+        evaluateExpressions:
+          type: boolean
+        marker:
+          type: string
+
+    DescribeObjectsOutput:
+      description: Response containing pipeline object definitions.
+      type: object
+      properties:
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        marker:
+          type: string
+        hasMoreResults:
+          type: boolean
+
+    AddTagsRequest:
+      description: Request body for adding tags to a pipeline.
+      type: object
+      required:
+        - pipelineId
+        - tags
+      properties:
+        pipelineId:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+    AddTagsOutput:
+      description: Response after adding tags.
+      type: object
+
+    RemoveTagsRequest:
+      description: Request body for removing tags from a pipeline.
+      type: object
+      required:
+        - pipelineId
+        - tagKeys
+      properties:
+        pipelineId:
+          type: string
+        tagKeys:
+          type: array
+          items:
+            type: string
+
+    RemoveTagsOutput:
+      description: Response after removing tags.
+      type: object
+
+    Error:
+      description: Standard error response from the Data Pipeline API.
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable error message
+        code:
+          type: string
+          description: An error code identifying the type of error

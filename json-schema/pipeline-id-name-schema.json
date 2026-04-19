@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/pipeline-id-name-schema.json",
+  "title": "Pipeline ID Name",
+  "description": "Contains a pipeline identifier and name.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The pipeline identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "The pipeline name"
+    }
+  }
+}

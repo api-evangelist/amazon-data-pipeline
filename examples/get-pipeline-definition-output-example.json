@@ -1,0 +1,11 @@
+{
+  "pipelineObjects": [
+    {
+      "id": "Schedule",
+      "name": "DailySchedule",
+      "fields": []
+    }
+  ],
+  "parameterObjects": [],
+  "parameterValues": []
+}

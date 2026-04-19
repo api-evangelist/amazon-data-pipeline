@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/field-structure.json",
+  "title": "Field",
+  "description": "A key-value pair defining a pipeline object property.",
+  "type": "typedMap",
+  "fields": {
+    "key": {
+      "type": "str",
+      "description": "key"
+    },
+    "stringValue": {
+      "type": "str",
+      "description": "stringValue"
+    },
+    "refValue": {
+      "type": "str",
+      "description": "refValue"
+    }
+  }
+}

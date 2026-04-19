@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/create-pipeline-request-schema.json",
+  "title": "Create Pipeline Request",
+  "description": "Request body for creating a new pipeline.",
+  "type": "object",
+  "required": [
+    "name",
+    "uniqueId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "uniqueId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array"
+    }
+  }
+}

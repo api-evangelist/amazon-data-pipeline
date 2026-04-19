@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/describe-pipelines-request-structure.json",
+  "title": "Describe Pipelines Request",
+  "description": "Request body for describing pipelines.",
+  "type": "typedMap",
+  "fields": {
+    "pipelineIds": {
+      "type": "list",
+      "description": "pipelineIds"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/activate-pipeline-request-structure.json",
+  "title": "Activate Pipeline Request",
+  "description": "Request body for activating a pipeline.",
+  "type": "typedMap",
+  "fields": {
+    "pipelineId": {
+      "type": "str",
+      "description": "pipelineId"
+    },
+    "startTimestamp": {
+      "type": "str",
+      "description": "startTimestamp"
+    }
+  }
+}

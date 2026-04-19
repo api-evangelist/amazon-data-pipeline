@@ -1,0 +1,5 @@
+{
+  "name": "MyDataPipeline",
+  "uniqueId": "my-data-pipeline-001",
+  "description": "Pipeline for processing daily sales data"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/query-objects-output-structure.json",
+  "title": "Query Objects Output",
+  "description": "Response containing matching pipeline object IDs.",
+  "type": "typedMap",
+  "fields": {
+    "ids": {
+      "type": "list",
+      "description": "ids"
+    },
+    "hasMoreResults": {
+      "type": "bool",
+      "description": "hasMoreResults"
+    },
+    "marker": {
+      "type": "str",
+      "description": "marker"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "message": "Pipeline not found",
+  "code": "PipelineNotFoundException"
+}

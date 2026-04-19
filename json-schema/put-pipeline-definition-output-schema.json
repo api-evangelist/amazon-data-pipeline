@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/put-pipeline-definition-output-schema.json",
+  "title": "Put Pipeline Definition Output",
+  "description": "Response after updating the pipeline definition.",
+  "type": "object",
+  "properties": {
+    "errored": {
+      "type": "boolean"
+    },
+    "validationErrors": {
+      "type": "array"
+    },
+    "validationWarnings": {
+      "type": "array"
+    }
+  }
+}

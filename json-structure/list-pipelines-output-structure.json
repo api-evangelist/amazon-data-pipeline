@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/list-pipelines-output-structure.json",
+  "title": "List Pipelines Output",
+  "description": "Response containing a list of pipeline identifiers.",
+  "type": "typedMap",
+  "fields": {
+    "pipelineIdList": {
+      "type": "list",
+      "description": "pipelineIdList"
+    },
+    "hasMoreResults": {
+      "type": "bool",
+      "description": "hasMoreResults"
+    },
+    "marker": {
+      "type": "str",
+      "description": "marker"
+    }
+  }
+}

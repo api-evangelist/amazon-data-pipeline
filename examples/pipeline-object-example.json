@@ -1,0 +1,14 @@
+{
+  "id": "Schedule",
+  "name": "DailySchedule",
+  "fields": [
+    {
+      "key": "type",
+      "stringValue": "Schedule"
+    },
+    {
+      "key": "period",
+      "stringValue": "1 Day"
+    }
+  ]
+}

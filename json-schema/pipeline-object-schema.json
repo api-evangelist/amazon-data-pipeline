@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/pipeline-object-schema.json",
+  "title": "Pipeline Object",
+  "description": "A pipeline component defining an activity, resource, schedule, or precondition.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "fields"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the pipeline object"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name"
+    },
+    "fields": {
+      "type": "array"
+    }
+  }
+}

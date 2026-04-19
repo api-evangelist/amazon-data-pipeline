@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/field-schema.json",
+  "title": "Field",
+  "description": "A key-value pair defining a pipeline object property.",
+  "type": "object",
+  "required": [
+    "key"
+  ],
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "stringValue": {
+      "type": "string"
+    },
+    "refValue": {
+      "type": "string"
+    }
+  }
+}

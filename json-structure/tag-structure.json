@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/tag-structure.json",
+  "title": "Tag",
+  "description": "A key-value tag pair applied to a pipeline resource.",
+  "type": "typedMap",
+  "fields": {
+    "key": {
+      "type": "str",
+      "description": "The tag key"
+    },
+    "value": {
+      "type": "str",
+      "description": "The tag value"
+    }
+  }
+}

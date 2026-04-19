@@ -1,0 +1,121 @@
+id: https://api-evangelist.github.io/amazon-data-pipeline/vocabulary/amazon-data-pipeline-vocabulary.yaml
+name: AWS Data Pipeline Vocabulary
+description: Controlled vocabulary for AWS Data Pipeline covering pipeline components, activities, data nodes, schedules, and ETL workflow concepts.
+version: 1.0.0
+specificationVersion: 1.0.0
+
+tags:
+  - AWS
+  - Data Pipeline
+  - ETL
+  - Data Processing
+
+operational:
+  resources:
+    - term: Pipeline
+      definition: An AWS Data Pipeline workflow definition containing activities, data nodes, schedules, and resources for processing data
+    - term: PipelineObject
+      definition: A component of a pipeline definition such as an activity, data node, schedule, or precondition
+    - term: PipelineDefinition
+      definition: The complete specification of a pipeline including all objects, parameters, and their relationships
+    - term: Activity
+      definition: A pipeline component representing a data transformation task such as CopyActivity, EmrActivity, or ShellCommandActivity
+    - term: DataNode
+      definition: A pipeline component representing a data source or destination such as S3DataNode, SqlDataNode, or DynamoDBDataNode
+    - term: Schedule
+      definition: A pipeline component defining when and how often activities run using start times and periods
+    - term: Resource
+      definition: A pipeline component representing the compute resource that runs activities such as Ec2Resource or EmrCluster
+    - term: Precondition
+      definition: A pipeline component defining conditions that must be met before an activity runs
+    - term: Field
+      definition: A key-value property of a pipeline object that configures its behavior
+
+  actions:
+    - term: CreatePipeline
+      definition: Create an empty pipeline container with name and unique identifier
+    - term: PutPipelineDefinition
+      definition: Add or replace the complete definition of a pipeline with its objects
+    - term: ValidatePipelineDefinition
+      definition: Check a pipeline definition for errors and warnings before activation
+    - term: ActivatePipeline
+      definition: Start processing pipeline tasks according to the defined schedule
+    - term: DeactivatePipeline
+      definition: Pause pipeline execution without deleting the definition
+    - term: DeletePipeline
+      definition: Permanently remove a pipeline and its history
+    - term: QueryObjects
+      definition: Search for pipeline object instances matching specified criteria
+    - term: DescribeObjects
+      definition: Retrieve detailed status and field information for specific pipeline objects
+
+  pipelineStates:
+    - term: SCHEDULED
+      definition: Pipeline is active and waiting to run according to its schedule
+    - term: RUNNING
+      definition: Pipeline activities are actively executing
+    - term: SHUTTING_DOWN
+      definition: Pipeline is in the process of stopping
+    - term: FINISHED
+      definition: Pipeline has completed all scheduled runs
+    - term: FAILED
+      definition: Pipeline encountered an error that prevented completion
+    - term: INACTIVE
+      definition: Pipeline has been deactivated and is not running
+
+  activityTypes:
+    - term: CopyActivity
+      definition: Pipeline activity that copies data between supported AWS data nodes
+    - term: EmrActivity
+      definition: Pipeline activity that runs an Amazon EMR job flow step
+    - term: HiveActivity
+      definition: Pipeline activity that runs a Hive query against an EMR cluster
+    - term: HiveCopyActivity
+      definition: Pipeline activity that copies data using Hive and EMR
+    - term: PigActivity
+      definition: Pipeline activity that runs a Pig script on an EMR cluster
+    - term: ShellCommandActivity
+      definition: Pipeline activity that runs an arbitrary shell command
+    - term: SqlActivity
+      definition: Pipeline activity that executes SQL against a relational database
+
+capability:
+  personas:
+    - term: Data Engineer
+      definition: Engineer building ETL pipelines to process and move data between AWS services
+    - term: Data Analyst
+      definition: Analyst using pipeline output data for reporting and business intelligence
+    - term: Platform Engineer
+      definition: Engineer automating data workflows and integrating with AWS storage and compute
+
+  workflows:
+    - term: Create and Activate Pipeline
+      definition: End-to-end process of creating, defining, validating, and activating a data pipeline
+    - term: Monitor Pipeline Execution
+      definition: Querying and inspecting the status of running pipeline instances
+    - term: Update Pipeline Definition
+      definition: Safely updating an active pipeline with revised activities or schedules
+
+crossReference:
+  awsServices:
+    - term: Amazon S3
+      definition: Primary data node source and destination for AWS Data Pipeline ETL workflows
+      url: https://aws.amazon.com/s3/
+    - term: Amazon EMR
+      definition: Managed Hadoop/Spark cluster resource for running large-scale data processing activities
+      url: https://aws.amazon.com/emr/
+    - term: Amazon RDS
+      definition: Relational database data node for SQL-based data extraction and loading
+      url: https://aws.amazon.com/rds/
+    - term: Amazon DynamoDB
+      definition: NoSQL data node for importing and exporting DynamoDB table data in pipelines
+      url: https://aws.amazon.com/dynamodb/
+    - term: Amazon Redshift
+      definition: Data warehouse target for loading processed data from pipeline activities
+      url: https://aws.amazon.com/redshift/
+    - term: AWS Glue
+      definition: Alternative managed ETL service that can complement or replace Data Pipeline workflows
+      url: https://aws.amazon.com/glue/
+    - term: Amazon CloudWatch
+      description: Used to monitor pipeline status and set up alerts for pipeline failures
+      url: https://aws.amazon.com/cloudwatch/

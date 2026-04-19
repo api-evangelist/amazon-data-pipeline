@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/pipeline-object-structure.json",
+  "title": "Pipeline Object",
+  "description": "A pipeline component defining an activity, resource, schedule, or precondition.",
+  "type": "typedMap",
+  "fields": {
+    "id": {
+      "type": "str",
+      "description": "The identifier of the pipeline object"
+    },
+    "name": {
+      "type": "str",
+      "description": "The name"
+    },
+    "fields": {
+      "type": "list",
+      "description": "fields"
+    }
+  }
+}

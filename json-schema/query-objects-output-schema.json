@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/query-objects-output-schema.json",
+  "title": "Query Objects Output",
+  "description": "Response containing matching pipeline object IDs.",
+  "type": "object",
+  "properties": {
+    "ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasMoreResults": {
+      "type": "boolean"
+    },
+    "marker": {
+      "type": "string"
+    }
+  }
+}

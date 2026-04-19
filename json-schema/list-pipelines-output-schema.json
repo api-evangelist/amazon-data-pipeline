@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/list-pipelines-output-schema.json",
+  "title": "List Pipelines Output",
+  "description": "Response containing a list of pipeline identifiers.",
+  "type": "object",
+  "properties": {
+    "pipelineIdList": {
+      "type": "array"
+    },
+    "hasMoreResults": {
+      "type": "boolean"
+    },
+    "marker": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/get-pipeline-definition-output-schema.json",
+  "title": "Get Pipeline Definition Output",
+  "description": "Response containing the pipeline definition.",
+  "type": "object",
+  "properties": {
+    "pipelineObjects": {
+      "type": "array"
+    },
+    "parameterObjects": {
+      "type": "array"
+    },
+    "parameterValues": {
+      "type": "array"
+    }
+  }
+}

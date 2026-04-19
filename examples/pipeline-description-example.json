@@ -1,0 +1,6 @@
+{
+  "pipelineId": "df-0937003B3GENERIC4EXAMPLE",
+  "name": "MyDataPipeline",
+  "description": "Daily sales data pipeline",
+  "pipelineState": "SCHEDULED"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "Schedule",
+  "errors": [
+    "Required field 'startDateTime' is missing"
+  ]
+}

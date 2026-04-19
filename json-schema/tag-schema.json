@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/tag-schema.json",
+  "title": "Tag",
+  "description": "A key-value tag pair applied to a pipeline resource.",
+  "type": "object",
+  "required": [
+    "key",
+    "value"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The tag key"
+    },
+    "value": {
+      "type": "string",
+      "description": "The tag value"
+    }
+  }
+}

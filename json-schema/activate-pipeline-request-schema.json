@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/activate-pipeline-request-schema.json",
+  "title": "Activate Pipeline Request",
+  "description": "Request body for activating a pipeline.",
+  "type": "object",
+  "required": [
+    "pipelineId"
+  ],
+  "properties": {
+    "pipelineId": {
+      "type": "string"
+    },
+    "startTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

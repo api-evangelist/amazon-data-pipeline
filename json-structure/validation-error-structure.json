@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/validation-error-structure.json",
+  "title": "Validation Error",
+  "description": "An error found during pipeline definition validation.",
+  "type": "typedMap",
+  "fields": {
+    "id": {
+      "type": "str",
+      "description": "id"
+    },
+    "errors": {
+      "type": "list",
+      "description": "errors"
+    }
+  }
+}

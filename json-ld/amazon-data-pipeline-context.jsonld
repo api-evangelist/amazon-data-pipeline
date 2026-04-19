@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aws": "https://aws.amazon.com/datapipeline/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Pipeline": {"@id": "aws:Pipeline"},
+    "PipelineObject": {"@id": "aws:PipelineObject"},
+    "PipelineDescription": {"@id": "aws:PipelineDescription"},
+    "Field": {"@id": "aws:Field"},
+    "Tag": {"@id": "aws:Tag"},
+    "ValidationError": {"@id": "aws:ValidationError"},
+
+    "pipelineId": {"@id": "aws:pipelineId", "@type": "xsd:string"},
+    "name": {"@id": "schema:name", "@type": "xsd:string"},
+    "description": {"@id": "schema:description", "@type": "xsd:string"},
+    "uniqueId": {"@id": "aws:uniqueId", "@type": "xsd:string"},
+    "pipelineState": {"@id": "aws:pipelineState", "@type": "xsd:string"},
+    "id": {"@id": "aws:objectId", "@type": "xsd:string"},
+
+    "key": {"@id": "aws:fieldKey", "@type": "xsd:string"},
+    "stringValue": {"@id": "aws:stringValue", "@type": "xsd:string"},
+    "refValue": {"@id": "aws:refValue", "@type": "xsd:string"},
+
+    "fields": {"@id": "aws:fields", "@container": "@set"},
+    "tags": {"@id": "aws:tags", "@container": "@set"},
+    "pipelineObjects": {"@id": "aws:pipelineObjects", "@container": "@set"},
+    "pipelineIdList": {"@id": "aws:pipelineIdList", "@container": "@set"},
+    "pipelineDescriptionList": {"@id": "aws:pipelineDescriptionList", "@container": "@set"},
+
+    "hasMoreResults": {"@id": "aws:hasMoreResults", "@type": "xsd:boolean"},
+    "marker": {"@id": "aws:marker", "@type": "xsd:string"},
+    "errored": {"@id": "aws:errored", "@type": "xsd:boolean"},
+    "validationErrors": {"@id": "aws:validationErrors", "@container": "@set"},
+    "validationWarnings": {"@id": "aws:validationWarnings", "@container": "@set"},
+
+    "startTimestamp": {"@id": "schema:startDate", "@type": "xsd:dateTime"},
+    "cancelActive": {"@id": "aws:cancelActive", "@type": "xsd:boolean"},
+    "sphere": {"@id": "aws:sphere", "@type": "xsd:string"},
+
+    "message": {"@id": "schema:description", "@type": "xsd:string"},
+    "code": {"@id": "aws:errorCode", "@type": "xsd:string"}
+  }
+}

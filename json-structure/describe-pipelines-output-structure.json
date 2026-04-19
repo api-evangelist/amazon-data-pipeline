@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/describe-pipelines-output-structure.json",
+  "title": "Describe Pipelines Output",
+  "description": "Response containing pipeline descriptions.",
+  "type": "typedMap",
+  "fields": {
+    "pipelineDescriptionList": {
+      "type": "list",
+      "description": "pipelineDescriptionList"
+    }
+  }
+}

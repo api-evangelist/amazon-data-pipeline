@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/create-pipeline-output-schema.json",
+  "title": "Create Pipeline Output",
+  "description": "Response after creating a pipeline.",
+  "type": "object",
+  "properties": {
+    "pipelineId": {
+      "type": "string",
+      "description": "The unique identifier for the pipeline"
+    }
+  }
+}

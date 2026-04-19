@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/put-pipeline-definition-output-structure.json",
+  "title": "Put Pipeline Definition Output",
+  "description": "Response after updating the pipeline definition.",
+  "type": "typedMap",
+  "fields": {
+    "errored": {
+      "type": "bool",
+      "description": "errored"
+    },
+    "validationErrors": {
+      "type": "list",
+      "description": "validationErrors"
+    },
+    "validationWarnings": {
+      "type": "list",
+      "description": "validationWarnings"
+    }
+  }
+}

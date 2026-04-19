@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/create-pipeline-request-structure.json",
+  "title": "Create Pipeline Request",
+  "description": "Request body for creating a new pipeline.",
+  "type": "typedMap",
+  "fields": {
+    "name": {
+      "type": "str",
+      "description": "name"
+    },
+    "uniqueId": {
+      "type": "str",
+      "description": "uniqueId"
+    },
+    "description": {
+      "type": "str",
+      "description": "description"
+    },
+    "tags": {
+      "type": "list",
+      "description": "tags"
+    }
+  }
+}

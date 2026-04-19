@@ -1,0 +1,9 @@
+{
+  "pipelineDescriptionList": [
+    {
+      "pipelineId": "df-0937003B3GENERIC4EXAMPLE",
+      "name": "MyDataPipeline",
+      "pipelineState": "SCHEDULED"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-schema/pipeline-description-schema.json",
+  "title": "Pipeline Description",
+  "description": "Contains pipeline metadata including name, description, fields, and tags.",
+  "type": "object",
+  "properties": {
+    "pipelineId": {
+      "type": "string",
+      "description": "The unique identifier of the pipeline"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "pipelineState": {
+      "type": "string",
+      "enum": [
+        "SCHEDULED",
+        "RUNNING",
+        "SHUTTING_DOWN",
+        "FINISHED",
+        "FAILED",
+        "INACTIVE"
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://api-evangelist.github.io/amazon-data-pipeline/json-structure/pipeline-id-name-structure.json",
+  "title": "Pipeline ID Name",
+  "description": "Contains a pipeline identifier and name.",
+  "type": "typedMap",
+  "fields": {
+    "id": {
+      "type": "str",
+      "description": "The pipeline identifier"
+    },
+    "name": {
+      "type": "str",
+      "description": "The pipeline name"
+    }
+  }
+}

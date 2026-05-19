@@ -1,0 +1,208 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Data Pipeline API — Pipeline Runs
+  description: 'AWS Data Pipeline API — Pipeline Runs. 4 operations. Lead operation: Activate Pipeline. Self-contained Naftiko
+    capability covering one Amazon Data Pipeline business surface.'
+  tags:
+  - Amazon Data Pipeline
+  - Pipeline Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DATA_PIPELINE_API_KEY: AMAZON_DATA_PIPELINE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-data-pipeline-pipeline-runs
+    baseUri: https://datapipeline.amazonaws.com
+    description: AWS Data Pipeline API — Pipeline Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: ?Action=ActivatePipeline
+      path: /?Action=ActivatePipeline
+      operations:
+      - name: activatepipeline
+        method: POST
+        description: Activate Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=DeactivatePipeline
+      path: /?Action=DeactivatePipeline
+      operations:
+      - name: deactivatepipeline
+        method: POST
+        description: Deactivate Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=DescribeObjects
+      path: /?Action=DescribeObjects
+      operations:
+      - name: describeobjects
+        method: POST
+        description: Describe Objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=QueryObjects
+      path: /?Action=QueryObjects
+      operations:
+      - name: queryobjects
+        method: POST
+        description: Query Objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DATA_PIPELINE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-data-pipeline-pipeline-runs-rest
+    port: 8080
+    description: REST adapter for AWS Data Pipeline API — Pipeline Runs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/action-activatepipeline
+      name: action-activatepipeline
+      description: REST surface for ?Action=ActivatePipeline.
+      operations:
+      - method: POST
+        name: activatepipeline
+        description: Activate Pipeline
+        call: amazon-data-pipeline-pipeline-runs.activatepipeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-deactivatepipeline
+      name: action-deactivatepipeline
+      description: REST surface for ?Action=DeactivatePipeline.
+      operations:
+      - method: POST
+        name: deactivatepipeline
+        description: Deactivate Pipeline
+        call: amazon-data-pipeline-pipeline-runs.deactivatepipeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-describeobjects
+      name: action-describeobjects
+      description: REST surface for ?Action=DescribeObjects.
+      operations:
+      - method: POST
+        name: describeobjects
+        description: Describe Objects
+        call: amazon-data-pipeline-pipeline-runs.describeobjects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-queryobjects
+      name: action-queryobjects
+      description: REST surface for ?Action=QueryObjects.
+      operations:
+      - method: POST
+        name: queryobjects
+        description: Query Objects
+        call: amazon-data-pipeline-pipeline-runs.queryobjects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-data-pipeline-pipeline-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Data Pipeline API — Pipeline Runs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activate-pipeline
+      description: Activate Pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-pipeline-pipeline-runs.activatepipeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deactivate-pipeline
+      description: Deactivate Pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-pipeline-pipeline-runs.deactivatepipeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-objects
+      description: Describe Objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-data-pipeline-pipeline-runs.describeobjects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-objects
+      description: Query Objects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-data-pipeline-pipeline-runs.queryobjects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

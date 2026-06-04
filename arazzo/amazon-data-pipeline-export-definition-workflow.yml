@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Export Definition
+  summary: Confirm a pipeline exists and then export its active definition objects.
+  description: >-
+    A backup and export flow for AWS Data Pipeline. DescribePipelines confirms
+    the pipeline exists and surfaces its current state, and GetPipelineDefinition
+    then retrieves the active version of the pipeline objects, parameter objects,
+    and parameter values for archival or migration. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: export-pipeline-definition
+  summary: Verify a pipeline, then export its active definition.
+  description: >-
+    Chains describePipelines into getPipelineDefinition so a caller can confirm
+    the pipeline before pulling its full definition for backup or migration.
+  inputs:
+    type: object
+    required:
+    - pipelineId
+    properties:
+      pipelineId:
+        type: string
+        description: The id of the pipeline whose definition is being exported.
+      version:
+        type: string
+        description: The definition version to retrieve (active or latest).
+  steps:
+  - stepId: describePipeline
+    description: >-
+      Confirm the pipeline exists and capture its current state before exporting
+      the definition.
+    operationId: describePipelines
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineIds:
+        - $inputs.pipelineId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineState: $response.body#/pipelineDescriptionList/0/pipelineState
+  - stepId: getDefinition
+    description: >-
+      Retrieve the active version of the pipeline objects, parameter objects,
+      and parameter values.
+    operationId: getPipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        version: $inputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineObjects: $response.body#/pipelineObjects
+      parameterObjects: $response.body#/parameterObjects
+      parameterValues: $response.body#/parameterValues
+  outputs:
+    pipelineState: $steps.describePipeline.outputs.pipelineState
+    pipelineObjects: $steps.getDefinition.outputs.pipelineObjects
+    parameterValues: $steps.getDefinition.outputs.parameterValues

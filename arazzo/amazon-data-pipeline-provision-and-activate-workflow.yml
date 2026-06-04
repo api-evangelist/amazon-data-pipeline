@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Provision and Activate
+  summary: Create an empty pipeline, populate its definition, activate it, and confirm its state.
+  description: >-
+    The canonical end-to-end provisioning flow for AWS Data Pipeline. An empty
+    pipeline is created with a caller-supplied unique id, the pipeline
+    definition (objects such as schedules, defaults, and activities) is written
+    with PutPipelineDefinition, the pipeline is activated to begin processing
+    tasks, and DescribePipelines confirms the resulting pipeline state. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-and-activate-pipeline
+  summary: Create a pipeline, set its definition, activate it, and confirm state.
+  description: >-
+    Chains createPipeline into putPipelineDefinition, then activatePipeline, and
+    finally describePipelines so the newly provisioned pipeline is fully running
+    and its state is observed in a single pass.
+  inputs:
+    type: object
+    required:
+    - name
+    - uniqueId
+    - pipelineObjects
+    properties:
+      name:
+        type: string
+        description: The human-readable name of the pipeline.
+      uniqueId:
+        type: string
+        description: An idempotency token that prevents duplicate pipeline creation.
+      description:
+        type: string
+        description: An optional description of the pipeline.
+      pipelineObjects:
+        type: array
+        description: The pipeline objects (schedules, defaults, activities) that make up the definition.
+        items:
+          type: object
+      startTimestamp:
+        type: string
+        description: The optional date-time at which the pipeline should begin processing.
+  steps:
+  - stepId: createPipeline
+    description: >-
+      Create a new, empty pipeline shell using the supplied name and idempotent
+      unique id.
+    operationId: createPipeline
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        uniqueId: $inputs.uniqueId
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineId: $response.body#/pipelineId
+  - stepId: putDefinition
+    description: >-
+      Populate the freshly created pipeline with its objects (schedules,
+      defaults, activities, preconditions).
+    operationId: putPipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $steps.createPipeline.outputs.pipelineId
+        pipelineObjects: $inputs.pipelineObjects
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      errored: $response.body#/errored
+      validationErrors: $response.body#/validationErrors
+  - stepId: activatePipeline
+    description: >-
+      Validate and start the pipeline so it begins processing its tasks on the
+      configured schedule.
+    operationId: activatePipeline
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $steps.createPipeline.outputs.pipelineId
+        startTimestamp: $inputs.startTimestamp
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      activated: $statusCode
+  - stepId: confirmState
+    description: >-
+      Read back the pipeline metadata to confirm the pipeline exists and observe
+      its current state after activation.
+    operationId: describePipelines
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineIds:
+        - $steps.createPipeline.outputs.pipelineId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineState: $response.body#/pipelineDescriptionList/0/pipelineState
+  outputs:
+    pipelineId: $steps.createPipeline.outputs.pipelineId
+    pipelineState: $steps.confirmState.outputs.pipelineState

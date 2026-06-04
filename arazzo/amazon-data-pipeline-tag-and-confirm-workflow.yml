@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Tag and Confirm
+  summary: Add governance tags to a pipeline and confirm they are attached.
+  description: >-
+    A governance flow for AWS Data Pipeline. AddTags applies cost-allocation or
+    ownership tags to a pipeline, and DescribePipelines then reads the pipeline
+    metadata back so the applied tags can be confirmed. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-and-confirm-pipeline
+  summary: Apply tags to a pipeline, then read its metadata to confirm them.
+  description: >-
+    Chains addTags into describePipelines so a caller both writes governance
+    tags and verifies them against the pipeline metadata in a single pass.
+  inputs:
+    type: object
+    required:
+    - pipelineId
+    - tags
+    properties:
+      pipelineId:
+        type: string
+        description: The id of the pipeline to tag.
+      tags:
+        type: array
+        description: The key-value tags to add or modify on the pipeline.
+        items:
+          type: object
+          required:
+          - key
+          - value
+          properties:
+            key:
+              type: string
+            value:
+              type: string
+  steps:
+  - stepId: addTags
+    description: >-
+      Add or modify the supplied governance tags on the pipeline.
+    operationId: addTags
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tagged: $statusCode
+  - stepId: confirmTags
+    description: >-
+      Read the pipeline metadata back so the applied tags can be confirmed.
+    operationId: describePipelines
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineIds:
+        - $inputs.pipelineId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tags: $response.body#/pipelineDescriptionList/0/tags
+  outputs:
+    pipelineId: $inputs.pipelineId
+    tags: $steps.confirmTags.outputs.tags

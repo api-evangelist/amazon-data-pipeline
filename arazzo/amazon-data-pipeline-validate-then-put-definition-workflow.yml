@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Validate Then Put Definition
+  summary: Validate a candidate pipeline definition and only commit it when it is error free.
+  description: >-
+    A safe-write pattern for AWS Data Pipeline definitions. The candidate set of
+    pipeline objects is first validated with ValidatePipelineDefinition. When the
+    validation reports no errors the definition is committed with
+    PutPipelineDefinition; when validation reports errors the flow ends without
+    mutating the pipeline. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: validate-then-put-definition
+  summary: Validate pipeline objects, then commit them only if validation passes.
+  description: >-
+    Branches on the validation result so an invalid definition never overwrites
+    a working pipeline, while a clean definition is committed immediately.
+  inputs:
+    type: object
+    required:
+    - pipelineId
+    - pipelineObjects
+    properties:
+      pipelineId:
+        type: string
+        description: The id of the pipeline whose definition is being validated and written.
+      pipelineObjects:
+        type: array
+        description: The candidate pipeline objects to validate and, if clean, commit.
+        items:
+          type: object
+  steps:
+  - stepId: validateDefinition
+    description: >-
+      Check the candidate pipeline objects for structural and semantic errors
+      before any write occurs.
+    operationId: validatePipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        pipelineObjects: $inputs.pipelineObjects
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      errored: $response.body#/errored
+      validationErrors: $response.body#/validationErrors
+    onSuccess:
+    - name: definitionIsClean
+      type: goto
+      stepId: commitDefinition
+      criteria:
+      - context: $response.body
+        condition: $.errored == false
+        type: jsonpath
+    - name: definitionHasErrors
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.errored == true
+        type: jsonpath
+  - stepId: commitDefinition
+    description: >-
+      Commit the validated pipeline objects to the pipeline now that validation
+      reported no errors.
+    operationId: putPipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        pipelineObjects: $inputs.pipelineObjects
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      errored: $response.body#/errored
+      validationWarnings: $response.body#/validationWarnings
+  outputs:
+    validationErrors: $steps.validateDefinition.outputs.validationErrors
+    committedErrored: $steps.commitDefinition.outputs.errored

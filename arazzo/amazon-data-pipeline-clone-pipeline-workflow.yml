@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Clone Pipeline
+  summary: Copy an existing pipeline's definition into a brand-new pipeline and activate it.
+  description: >-
+    A cloning flow for AWS Data Pipeline. The source pipeline's active definition
+    is exported with GetPipelineDefinition, a new empty pipeline is created with
+    a fresh unique id, the exported objects are written into the new pipeline with
+    PutPipelineDefinition, and the clone is activated to begin processing. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: clone-pipeline
+  summary: Export a source definition into a new pipeline, then activate the clone.
+  description: >-
+    Chains getPipelineDefinition, createPipeline, putPipelineDefinition, and
+    activatePipeline so the configuration of an existing pipeline can be
+    replicated into a new running pipeline in a single pass.
+  inputs:
+    type: object
+    required:
+    - sourcePipelineId
+    - name
+    - uniqueId
+    properties:
+      sourcePipelineId:
+        type: string
+        description: The id of the pipeline whose definition is being cloned.
+      name:
+        type: string
+        description: The name of the new cloned pipeline.
+      uniqueId:
+        type: string
+        description: An idempotency token for the new pipeline.
+      description:
+        type: string
+        description: An optional description for the cloned pipeline.
+      version:
+        type: string
+        description: The source definition version to read (active or latest).
+      startTimestamp:
+        type: string
+        description: The optional date-time at which the cloned pipeline should begin processing.
+  steps:
+  - stepId: getSourceDefinition
+    description: >-
+      Export the source pipeline's objects so they can be replicated into the
+      new pipeline.
+    operationId: getPipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.sourcePipelineId
+        version: $inputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineObjects: $response.body#/pipelineObjects
+  - stepId: createClone
+    description: >-
+      Create the new empty pipeline that will receive the cloned definition.
+    operationId: createPipeline
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        uniqueId: $inputs.uniqueId
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineId: $response.body#/pipelineId
+  - stepId: putClonedDefinition
+    description: >-
+      Write the exported source objects into the new pipeline.
+    operationId: putPipelineDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $steps.createClone.outputs.pipelineId
+        pipelineObjects: $steps.getSourceDefinition.outputs.pipelineObjects
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      errored: $response.body#/errored
+  - stepId: activateClone
+    description: >-
+      Activate the cloned pipeline so it begins processing with the replicated
+      definition.
+    operationId: activatePipeline
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $steps.createClone.outputs.pipelineId
+        startTimestamp: $inputs.startTimestamp
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      activated: $statusCode
+  outputs:
+    clonePipelineId: $steps.createClone.outputs.pipelineId
+    clonedErrored: $steps.putClonedDefinition.outputs.errored
+    activated: $steps.activateClone.outputs.activated

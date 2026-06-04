@@ -60,6 +60,36 @@ apis:
   - type: NaftikoCapability
     url: capabilities/amazon-data-pipeline-tags.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/amazon-data-pipeline-clone-pipeline-workflow.yml
+    name: Amazon Data Pipeline Clone Pipeline
+    summary: Copy an existing pipeline's definition into a brand-new pipeline and activate it.
+  - url: arazzo/amazon-data-pipeline-deactivate-and-delete-workflow.yml
+    name: Amazon Data Pipeline Deactivate and Delete
+    summary: Stop a running pipeline and then permanently remove it and its run history.
+  - url: arazzo/amazon-data-pipeline-export-definition-workflow.yml
+    name: Amazon Data Pipeline Export Definition
+    summary: Confirm a pipeline exists and then export its active definition objects.
+  - url: arazzo/amazon-data-pipeline-inspect-running-tasks-workflow.yml
+    name: Amazon Data Pipeline Inspect Running Tasks
+    summary: Find running task instances in a pipeline and pull their full object definitions.
+  - url: arazzo/amazon-data-pipeline-list-and-describe-workflow.yml
+    name: Amazon Data Pipeline List and Describe
+    summary: List all accessible pipelines and pull full metadata for the first page of them.
+  - url: arazzo/amazon-data-pipeline-provision-and-activate-workflow.yml
+    name: Amazon Data Pipeline Provision and Activate
+    summary: Create an empty pipeline, populate its definition, activate it, and confirm its state.
+  - url: arazzo/amazon-data-pipeline-redeploy-definition-workflow.yml
+    name: Amazon Data Pipeline Redeploy Definition
+    summary: Deactivate a pipeline, write a new definition, then reactivate it with the new objects.
+  - url: arazzo/amazon-data-pipeline-tag-and-confirm-workflow.yml
+    name: Amazon Data Pipeline Tag and Confirm
+    summary: Add governance tags to a pipeline and confirm they are attached.
+  - url: arazzo/amazon-data-pipeline-validate-then-put-definition-workflow.yml
+    name: Amazon Data Pipeline Validate Then Put Definition
+    summary: Validate a candidate pipeline definition and only commit it when it is error free.
 - type: Portal
   url: https://aws.amazon.com/datapipeline/
 - type: DeveloperPortal

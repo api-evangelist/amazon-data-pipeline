@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Data Pipeline Inspect Running Tasks
+  summary: Find running task instances in a pipeline and pull their full object definitions.
+  description: >-
+    A monitoring flow for AWS Data Pipeline task management. QueryObjects is used
+    to find the object ids in the INSTANCE sphere that match a status selector
+    (for example RUNNING), and DescribeObjects then retrieves the full field
+    definitions for the first matching object. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPipelineApi
+  url: ../openapi/amazon-data-pipeline-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-running-tasks
+  summary: Query matching task instances, then describe the first match in detail.
+  description: >-
+    Chains queryObjects into describeObjects so an operator can move from a
+    status filter to the full field-level detail of a task instance in one pass.
+  inputs:
+    type: object
+    required:
+    - pipelineId
+    properties:
+      pipelineId:
+        type: string
+        description: The id of the pipeline whose task instances are being inspected.
+      sphere:
+        type: string
+        description: The object sphere to query (COMPONENT, INSTANCE, or ATTEMPT).
+      query:
+        type: object
+        description: The selector query identifying which objects to match.
+  steps:
+  - stepId: queryObjects
+    description: >-
+      Find the ids of objects in the requested sphere that match the supplied
+      selector query.
+    operationId: queryObjects
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        sphere: $inputs.sphere
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstObjectId: $response.body#/ids/0
+      hasMoreResults: $response.body#/hasMoreResults
+    onSuccess:
+    - name: matchesFound
+      type: goto
+      stepId: describeObjects
+      criteria:
+      - context: $response.body
+        condition: $.ids.length > 0
+        type: jsonpath
+    - name: noMatches
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.ids.length == 0
+        type: jsonpath
+  - stepId: describeObjects
+    description: >-
+      Retrieve the full field-level definition for the first matching task
+      object id.
+    operationId: describeObjects
+    requestBody:
+      contentType: application/json
+      payload:
+        pipelineId: $inputs.pipelineId
+        objectIds:
+        - $steps.queryObjects.outputs.firstObjectId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineObjects: $response.body#/pipelineObjects
+  outputs:
+    firstObjectId: $steps.queryObjects.outputs.firstObjectId
+    pipelineObjects: $steps.describeObjects.outputs.pipelineObjects

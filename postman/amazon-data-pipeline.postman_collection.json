@@ -1,0 +1,1548 @@
+{
+  "info": {
+    "_postman_id": "86593bca-9318-4c47-a09e-21605be430d3",
+    "name": "AWS Data Pipeline API",
+    "description": "The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:02:57.000Z",
+    "updatedAt": "2026-06-05T15:02:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-86593bca-9318-4c47-a09e-21605be430d3"
+  },
+  "item": [
+    {
+      "name": "?Action=CreatePipeline",
+      "item": [
+        {
+          "name": "Create Pipeline",
+          "id": "67d91007-2763-4f34-a096-67bfb6adfb8d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"uniqueId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreatePipeline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreatePipeline"
+                }
+              ]
+            },
+            "description": "Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline."
+          },
+          "response": [
+            {
+              "id": "1e4822b8-db53-4344-b019-f0810168dd6b",
+              "name": "Pipeline created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"uniqueId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pipelineId\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-1e4822b8-db53-4344-b019-f0810168dd6b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-67d91007-2763-4f34-a096-67bfb6adfb8d"
+        }
+      ],
+      "id": "68cca400-6590-458e-9a37-faf83bcbd858",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-68cca400-6590-458e-9a37-faf83bcbd858"
+    },
+    {
+      "name": "?Action=DeletePipeline",
+      "item": [
+        {
+          "name": "Delete Pipeline",
+          "id": "98cb330c-e39e-4bfa-a2d0-0c5e53e16291",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DeletePipeline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DeletePipeline"
+                }
+              ]
+            },
+            "description": "Deletes a pipeline, its pipeline definition, and its run history. You cannot query or restore a deleted pipeline."
+          },
+          "response": [
+            {
+              "id": "67fcb8af-5dbb-426b-96e5-094e86cfa1cc",
+              "name": "Pipeline deleted successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-67fcb8af-5dbb-426b-96e5-094e86cfa1cc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-98cb330c-e39e-4bfa-a2d0-0c5e53e16291"
+        }
+      ],
+      "id": "960db562-e4df-4f11-8018-b16f98f15d31",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-960db562-e4df-4f11-8018-b16f98f15d31"
+    },
+    {
+      "name": "?Action=DescribePipelines",
+      "item": [
+        {
+          "name": "Describe Pipelines",
+          "id": "24dec859-848c-4e38-97cc-7a87c93d369c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribePipelines",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DescribePipelines"
+                }
+              ]
+            },
+            "description": "Retrieves metadata about one or more pipelines. The information retrieved includes the name, description, inactivity timeout, and the list of the pipeline's schedules."
+          },
+          "response": [
+            {
+              "id": "d7033778-2d38-44f5-a7fc-b672dddb1713",
+              "name": "Pipeline descriptions returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pipelineDescriptionList\": [\n    {\n      \"pipelineId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipelineState\": \"SHUTTING_DOWN\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ],\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"pipelineId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipelineState\": \"WAITING_FOR_RUNNER\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ],\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-d7033778-2d38-44f5-a7fc-b672dddb1713"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-24dec859-848c-4e38-97cc-7a87c93d369c"
+        }
+      ],
+      "id": "934e7ccb-f2e2-47cf-9008-d439680aa875",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-934e7ccb-f2e2-47cf-9008-d439680aa875"
+    },
+    {
+      "name": "?Action=ListPipelines",
+      "item": [
+        {
+          "name": "List Pipelines",
+          "id": "d9da1de1-c549-4678-85d5-f897c8e534b9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marker\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ListPipelines",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ListPipelines"
+                }
+              ]
+            },
+            "description": "Lists the pipeline identifiers for all active pipelines that you have permission to access."
+          },
+          "response": [
+            {
+              "id": "b6cf22be-d8a8-4680-a566-ce928a7b962a",
+              "name": "List of pipelines returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"marker\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pipelineIdList\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"marker\": \"<string>\",\n  \"hasMoreResults\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-b6cf22be-d8a8-4680-a566-ce928a7b962a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-d9da1de1-c549-4678-85d5-f897c8e534b9"
+        }
+      ],
+      "id": "e2135081-127c-45a2-aba9-cf4595730c80",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-e2135081-127c-45a2-aba9-cf4595730c80"
+    },
+    {
+      "name": "?Action=PutPipelineDefinition",
+      "item": [
+        {
+          "name": "Put Pipeline Definition",
+          "id": "3f42cab8-0441-4774-94fc-0fb570f436f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=PutPipelineDefinition",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "PutPipelineDefinition"
+                }
+              ]
+            },
+            "description": "Adds tasks, schedules, and preconditions to the specified pipeline. This operation is idempotent."
+          },
+          "response": [
+            {
+              "id": "1636b1c0-ea64-42c9-a54a-351f52d3f16a",
+              "name": "Pipeline definition updated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errored\": \"<boolean>\",\n  \"validationErrors\": [\n    {\n      \"id\": \"<string>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"validationWarnings\": [\n    {\n      \"id\": \"<string>\",\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-1636b1c0-ea64-42c9-a54a-351f52d3f16a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-3f42cab8-0441-4774-94fc-0fb570f436f9"
+        }
+      ],
+      "id": "a61690fc-0f74-4c1c-bb32-cf250edeaf90",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-a61690fc-0f74-4c1c-bb32-cf250edeaf90"
+    },
+    {
+      "name": "?Action=GetPipelineDefinition",
+      "item": [
+        {
+          "name": "Get Pipeline Definition",
+          "id": "034aa389-0e8c-4905-9e79-1fd7f3358fff",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=GetPipelineDefinition",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "GetPipelineDefinition"
+                }
+              ]
+            },
+            "description": "Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition."
+          },
+          "response": [
+            {
+              "id": "a9df6879-06e0-465c-917e-afb67586300f",
+              "name": "Pipeline definition returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-a9df6879-06e0-465c-917e-afb67586300f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-034aa389-0e8c-4905-9e79-1fd7f3358fff"
+        }
+      ],
+      "id": "fa30efe1-a107-4814-a986-ea9e20373f8c",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-fa30efe1-a107-4814-a986-ea9e20373f8c"
+    },
+    {
+      "name": "?Action=ValidatePipelineDefinition",
+      "item": [
+        {
+          "name": "Validate Pipeline Definition",
+          "id": "aa2ddbb1-7b4c-4de5-a668-1dc843fcb1c9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ValidatePipelineDefinition",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ValidatePipelineDefinition"
+                }
+              ]
+            },
+            "description": "Validates the specified pipeline definition to ensure that it is well formed and can be run without error."
+          },
+          "response": [
+            {
+              "id": "45111954-efdd-4e84-9156-72ce9d875848",
+              "name": "Validation results returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errored\": \"<boolean>\",\n  \"validationErrors\": [\n    {\n      \"id\": \"<string>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"validationWarnings\": [\n    {\n      \"id\": \"<string>\",\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"warnings\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-45111954-efdd-4e84-9156-72ce9d875848"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-aa2ddbb1-7b4c-4de5-a668-1dc843fcb1c9"
+        }
+      ],
+      "id": "216a4ba1-3594-4792-b3bc-e159facc79b1",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-216a4ba1-3594-4792-b3bc-e159facc79b1"
+    },
+    {
+      "name": "?Action=ActivatePipeline",
+      "item": [
+        {
+          "name": "Activate Pipeline",
+          "id": "7117751f-012e-48df-9c3f-c3a7301cd1fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"startTimestamp\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=ActivatePipeline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ActivatePipeline"
+                }
+              ]
+            },
+            "description": "Validates the specified pipeline and starts processing pipeline tasks. If the pipeline does not pass validation, activation fails."
+          },
+          "response": [
+            {
+              "id": "595dba6d-f641-4c7c-8e37-a14a50eae80f",
+              "name": "Pipeline activated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"startTimestamp\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-595dba6d-f641-4c7c-8e37-a14a50eae80f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-7117751f-012e-48df-9c3f-c3a7301cd1fe"
+        }
+      ],
+      "id": "2402fd4b-201a-4d48-916d-29f2053a4e6b",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-2402fd4b-201a-4d48-916d-29f2053a4e6b"
+    },
+    {
+      "name": "?Action=DeactivatePipeline",
+      "item": [
+        {
+          "name": "Deactivate Pipeline",
+          "id": "bf1158a2-7c65-451d-8b7a-30ff72ab453b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"cancelActive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DeactivatePipeline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DeactivatePipeline"
+                }
+              ]
+            },
+            "description": "Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING state until the deactivation process completes."
+          },
+          "response": [
+            {
+              "id": "98df2df4-4a66-44e5-ae96-1b52eff3b005",
+              "name": "Pipeline deactivation initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"cancelActive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-98df2df4-4a66-44e5-ae96-1b52eff3b005"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-bf1158a2-7c65-451d-8b7a-30ff72ab453b"
+        }
+      ],
+      "id": "52a7fc4b-aabd-4633-9058-5d3a418f05bc",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-52a7fc4b-aabd-4633-9058-5d3a418f05bc"
+    },
+    {
+      "name": "?Action=QueryObjects",
+      "item": [
+        {
+          "name": "Query Objects",
+          "id": "8338424a-6460-4bd8-b96e-2d881c6fe9a8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"sphere\": \"INSTANCE\",\n  \"query\": {},\n  \"marker\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=QueryObjects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "QueryObjects"
+                }
+              ]
+            },
+            "description": "Queries the specified pipeline for the names of objects that match the specified set of conditions."
+          },
+          "response": [
+            {
+              "id": "309da15f-067c-478c-a99a-1f12f7893048",
+              "name": "Query results returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"sphere\": \"INSTANCE\",\n  \"query\": {},\n  \"marker\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"marker\": \"<string>\",\n  \"hasMoreResults\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-309da15f-067c-478c-a99a-1f12f7893048"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-8338424a-6460-4bd8-b96e-2d881c6fe9a8"
+        }
+      ],
+      "id": "6b6a304e-1328-4f78-9188-b42a8b9044a8",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-6b6a304e-1328-4f78-9188-b42a8b9044a8"
+    },
+    {
+      "name": "?Action=DescribeObjects",
+      "item": [
+        {
+          "name": "Describe Objects",
+          "id": "bd68230f-538c-404b-b1a9-f0052e722de5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"objectIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"evaluateExpressions\": \"<boolean>\",\n  \"marker\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribeObjects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DescribeObjects"
+                }
+              ]
+            },
+            "description": "Gets the object definitions for a set of objects associated with the pipeline."
+          },
+          "response": [
+            {
+              "id": "2cade5b8-49ec-4470-9351-20c1b00bb42a",
+              "name": "Object descriptions returned successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"objectIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"evaluateExpressions\": \"<boolean>\",\n  \"marker\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"marker\": \"<string>\",\n  \"hasMoreResults\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-2cade5b8-49ec-4470-9351-20c1b00bb42a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-bd68230f-538c-404b-b1a9-f0052e722de5"
+        }
+      ],
+      "id": "9073d227-f72c-4e48-9faa-5d0c2469c594",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-9073d227-f72c-4e48-9faa-5d0c2469c594"
+    },
+    {
+      "name": "?Action=AddTags",
+      "item": [
+        {
+          "name": "Add Tags",
+          "id": "9a92181e-f661-416b-97e4-517af6f95784",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=AddTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "AddTags"
+                }
+              ]
+            },
+            "description": "Adds or modifies tags for the specified pipeline."
+          },
+          "response": [
+            {
+              "id": "3914832e-9691-4cad-813a-5ee165db4458",
+              "name": "Tags added successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-3914832e-9691-4cad-813a-5ee165db4458"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-9a92181e-f661-416b-97e4-517af6f95784"
+        }
+      ],
+      "id": "747ec539-4685-43b8-9e20-31f80602ac34",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-747ec539-4685-43b8-9e20-31f80602ac34"
+    },
+    {
+      "name": "?Action=RemoveTags",
+      "item": [
+        {
+          "name": "Remove Tags",
+          "id": "a04dab5e-354e-46da-95d1-90ae146b865c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"tagKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=RemoveTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "RemoveTags"
+                }
+              ]
+            },
+            "description": "Removes existing tags from the specified pipeline."
+          },
+          "response": [
+            {
+              "id": "6f726801-fd07-486e-b273-90e94f10fc47",
+              "name": "Tags removed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"tagKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-06-05T15:02:57.000Z",
+              "updatedAt": "2026-06-05T15:02:57.000Z",
+              "uid": "35240-6f726801-fd07-486e-b273-90e94f10fc47"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:57.000Z",
+          "updatedAt": "2026-06-05T15:02:57.000Z",
+          "uid": "35240-a04dab5e-354e-46da-95d1-90ae146b865c"
+        }
+      ],
+      "id": "088eacb0-720e-440d-adf3-9e2ec22fac07",
+      "createdAt": "2026-06-05T15:02:57.000Z",
+      "updatedAt": "2026-06-05T15:02:57.000Z",
+      "uid": "35240-088eacb0-720e-440d-adf3-9e2ec22fac07"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://datapipeline.amazonaws.com"
+    }
+  ]
+}

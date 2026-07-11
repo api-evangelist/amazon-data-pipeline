@@ -54,6 +54,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-data-pipeline-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-data-pipeline-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-data-pipeline-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-data-pipeline-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-data-pipeline-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-data-pipeline/overview
   - type: Arazzo

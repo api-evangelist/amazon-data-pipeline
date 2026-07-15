@@ -54,6 +54,8 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-data-pipeline-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-data-pipeline-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-data-pipeline-trust-center.yml
   - type: VulnerabilityDisclosure

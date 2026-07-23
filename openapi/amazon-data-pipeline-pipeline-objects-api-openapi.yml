@@ -1,0 +1,297 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Pipeline Pipeline Objects API
+  description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
+  version: '2012-10-29'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://datapipeline.amazonaws.com
+  description: AWS Data Pipeline API
+security:
+- awsSignatureV4: []
+tags:
+- name: Pipeline Objects
+  description: Operations for managing pipeline object definitions
+paths:
+  /?Action=PutPipelineDefinition:
+    post:
+      operationId: putPipelineDefinition
+      summary: Put Pipeline Definition
+      description: Adds tasks, schedules, and preconditions to the specified pipeline. This operation is idempotent.
+      tags:
+      - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  pipelineObjects:
+                  - id: Schedule
+                    name: DailySchedule
+                    fields:
+                    - key: type
+                      stringValue: Schedule
+                    - key: startDateTime
+                      stringValue: '2024-01-15T00:00:00'
+                    - key: period
+                      stringValue: 1 Day
+                  - id: Default
+                    name: Default
+                    fields:
+                    - key: workerGroup
+                      stringValue: myWorkerGroup
+      responses:
+        '200':
+          description: Pipeline definition updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutPipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    errored: false
+                    validationErrors: []
+                    validationWarnings: []
+  /?Action=GetPipelineDefinition:
+    post:
+      operationId: getPipelineDefinition
+      summary: Get Pipeline Definition
+      description: Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition.
+      tags:
+      - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  version: active
+      responses:
+        '200':
+          description: Pipeline definition returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineObjects:
+                    - id: Schedule
+                      name: DailySchedule
+                      fields:
+                      - key: type
+                        stringValue: Schedule
+                    parameterObjects: []
+                    parameterValues: []
+  /?Action=ValidatePipelineDefinition:
+    post:
+      operationId: validatePipelineDefinition
+      summary: Validate Pipeline Definition
+      description: Validates the specified pipeline definition to ensure that it is well formed and can be run without error.
+      tags:
+      - Pipeline Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidatePipelineDefinitionRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  pipelineObjects:
+                  - id: Schedule
+                    name: DailySchedule
+                    fields:
+                    - key: type
+                      stringValue: Schedule
+      responses:
+        '200':
+          description: Validation results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidatePipelineDefinitionOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    errored: false
+                    validationErrors: []
+                    validationWarnings: []
+components:
+  schemas:
+    PutPipelineDefinitionOutput:
+      description: Response after updating the pipeline definition.
+      type: object
+      properties:
+        errored:
+          type: boolean
+          description: Whether the definition has errors
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+    PutPipelineDefinitionRequest:
+      description: Request body for setting the pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          description: Parameter object definitions
+          items:
+            type: object
+        parameterValues:
+          type: array
+          description: Parameter value overrides
+          items:
+            type: object
+    ValidatePipelineDefinitionRequest:
+      description: Request body for validating a pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
+    ValidationWarning:
+      description: A warning found during pipeline definition validation.
+      type: object
+      properties:
+        id:
+          type: string
+        warnings:
+          type: array
+          items:
+            type: string
+    ValidationError:
+      description: An error found during pipeline definition validation.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the object that caused the error
+        errors:
+          type: array
+          items:
+            type: string
+    PipelineObject:
+      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+      type: object
+      required:
+      - id
+      - name
+      - fields
+      properties:
+        id:
+          type: string
+          description: The identifier of the pipeline object
+        name:
+          type: string
+          description: The name of the pipeline object
+        fields:
+          type: array
+          description: Key-value pairs defining the object configuration
+          items:
+            $ref: '#/components/schemas/Field'
+    GetPipelineDefinitionOutput:
+      description: Response containing the pipeline definition.
+      type: object
+      properties:
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          items:
+            type: object
+        parameterValues:
+          type: array
+          items:
+            type: object
+    ValidatePipelineDefinitionOutput:
+      description: Response containing pipeline definition validation results.
+      type: object
+      properties:
+        errored:
+          type: boolean
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+    GetPipelineDefinitionRequest:
+      description: Request body for retrieving a pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        version:
+          type: string
+          description: The version of the pipeline definition (active or latest)
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

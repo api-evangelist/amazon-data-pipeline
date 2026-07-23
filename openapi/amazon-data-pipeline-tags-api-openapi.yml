@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Pipeline Pipeline Objects Tags API
+  description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
+  version: '2012-10-29'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://datapipeline.amazonaws.com
+  description: AWS Data Pipeline API
+security:
+- awsSignatureV4: []
+tags:
+- name: Tags
+  description: Operations for managing pipeline tags
+paths:
+  /?Action=AddTags:
+    post:
+      operationId: addTags
+      summary: Add Tags
+      description: Adds or modifies tags for the specified pipeline.
+      tags:
+      - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTagsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  tags:
+                  - key: CostCenter
+                    value: CC-001
+                  - key: Owner
+                    value: data-engineering
+      responses:
+        '200':
+          description: Tags added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddTagsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /?Action=RemoveTags:
+    post:
+      operationId: removeTags
+      summary: Remove Tags
+      description: Removes existing tags from the specified pipeline.
+      tags:
+      - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveTagsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+                  tagKeys:
+                  - CostCenter
+      responses:
+        '200':
+          description: Tags removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoveTagsOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+components:
+  schemas:
+    AddTagsOutput:
+      description: Response after adding tags.
+      type: object
+    RemoveTagsOutput:
+      description: Response after removing tags.
+      type: object
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
+    RemoveTagsRequest:
+      description: Request body for removing tags from a pipeline.
+      type: object
+      required:
+      - pipelineId
+      - tagKeys
+      properties:
+        pipelineId:
+          type: string
+        tagKeys:
+          type: array
+          items:
+            type: string
+    AddTagsRequest:
+      description: Request body for adding tags to a pipeline.
+      type: object
+      required:
+      - pipelineId
+      - tags
+      properties:
+        pipelineId:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

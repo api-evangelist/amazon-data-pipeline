@@ -1,0 +1,310 @@
+openapi: 3.1.0
+info:
+  title: AWS Data Pipeline Pipeline Objects Pipelines API
+  description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
+  version: '2012-10-29'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+servers:
+- url: https://datapipeline.amazonaws.com
+  description: AWS Data Pipeline API
+security:
+- awsSignatureV4: []
+tags:
+- name: Pipelines
+  description: Operations for managing data pipelines
+paths:
+  /?Action=CreatePipeline:
+    post:
+      operationId: createPipeline
+      summary: Create Pipeline
+      description: Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline.
+      tags:
+      - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: MyDataPipeline
+                  uniqueId: my-data-pipeline-001
+                  description: Pipeline for processing daily sales data
+                  tags:
+                  - key: Environment
+                    value: Production
+      responses:
+        '200':
+          description: Pipeline created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineId: df-0937003B3GENERIC4EXAMPLE
+  /?Action=DeletePipeline:
+    post:
+      operationId: deletePipeline
+      summary: Delete Pipeline
+      description: Deletes a pipeline, its pipeline definition, and its run history. You cannot query or restore a deleted pipeline.
+      tags:
+      - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletePipelineRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineId: df-0937003B3GENERIC4EXAMPLE
+      responses:
+        '200':
+          description: Pipeline deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePipelineOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /?Action=DescribePipelines:
+    post:
+      operationId: describePipelines
+      summary: Describe Pipelines
+      description: Retrieves metadata about one or more pipelines. The information retrieved includes the name, description, inactivity timeout, and the list of the pipeline's schedules.
+      tags:
+      - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DescribePipelinesRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  pipelineIds:
+                  - df-0937003B3GENERIC4EXAMPLE
+      responses:
+        '200':
+          description: Pipeline descriptions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribePipelinesOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineDescriptionList:
+                    - pipelineId: df-0937003B3GENERIC4EXAMPLE
+                      name: MyDataPipeline
+                      description: Pipeline for processing daily sales data
+                      pipelineState: SCHEDULED
+                      fields:
+                      - key: '@pipelineState'
+                        stringValue: SCHEDULED
+  /?Action=ListPipelines:
+    post:
+      operationId: listPipelines
+      summary: List Pipelines
+      description: Lists the pipeline identifiers for all active pipelines that you have permission to access.
+      tags:
+      - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListPipelinesRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  marker: null
+      responses:
+        '200':
+          description: List of pipelines returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPipelinesOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    pipelineIdList:
+                    - id: df-0937003B3GENERIC4EXAMPLE
+                      name: MyDataPipeline
+                    hasMoreResults: false
+components:
+  schemas:
+    ListPipelinesRequest:
+      description: Request body for listing pipelines.
+      type: object
+      properties:
+        marker:
+          type: string
+          description: The starting point for the results to be returned
+    DescribePipelinesOutput:
+      description: Response containing pipeline descriptions.
+      type: object
+      properties:
+        pipelineDescriptionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineDescription'
+    DeletePipelineRequest:
+      description: Request body for deleting a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline to delete
+    DeletePipelineOutput:
+      description: Response after deleting a pipeline.
+      type: object
+    DescribePipelinesRequest:
+      description: Request body for describing one or more pipelines.
+      type: object
+      required:
+      - pipelineIds
+      properties:
+        pipelineIds:
+          type: array
+          description: The IDs of the pipelines to describe
+          items:
+            type: string
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
+    CreatePipelineRequest:
+      description: Request body for creating a new pipeline.
+      type: object
+      required:
+      - name
+      - uniqueId
+      properties:
+        name:
+          type: string
+          description: The name of the pipeline
+        uniqueId:
+          type: string
+          description: A unique identifier for the pipeline, used to prevent duplicate pipeline creation
+        description:
+          type: string
+          description: A description of the pipeline
+        tags:
+          type: array
+          description: Tags to apply to the pipeline
+          items:
+            $ref: '#/components/schemas/Tag'
+    PipelineDescription:
+      description: Contains pipeline metadata including name, description, fields, and tags.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier of the pipeline
+        name:
+          type: string
+          description: The name of the pipeline
+        description:
+          type: string
+          description: A description of the pipeline
+        pipelineState:
+          type: string
+          description: The current state of the pipeline
+          enum:
+          - SCHEDULED
+          - WAITING_FOR_RUNNER
+          - RUNNING
+          - SHUTTING_DOWN
+          - FINISHED
+          - FAILED
+          - WAITING_ON_DEPENDENCIES
+          - INACTIVE
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
+    PipelineIdName:
+      description: Contains a pipeline identifier and name.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The pipeline identifier
+        name:
+          type: string
+          description: The pipeline name
+    ListPipelinesOutput:
+      description: Response containing a list of pipeline identifiers.
+      type: object
+      properties:
+        pipelineIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineIdName'
+        marker:
+          type: string
+          description: The starting point for the next page of results
+        hasMoreResults:
+          type: boolean
+    CreatePipelineOutput:
+      description: Response after creating a pipeline.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier for the pipeline
+  securitySchemes:
+    awsSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

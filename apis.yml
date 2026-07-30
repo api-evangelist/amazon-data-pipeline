@@ -7,7 +7,20 @@ description: >-
   to AWS services such as Amazon S3, Amazon RDS, Amazon DynamoDB, and Amazon EMR. It supports data-driven workflows with
   retry, failure handling, and scheduling capabilities.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-data-pipeline.png
 tags:
   - AWS
   - Data Processing
@@ -20,39 +33,110 @@ created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: amazon-data-pipeline:aws-data-pipeline-api
-    name: AWS Data Pipeline API
-    description: >-
-      The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and
-      storage services as well as on-premises data sources at specified intervals. The API allows you to create pipeline
-      definitions, schedule data transformations, configure retry and failure handling logic, and monitor pipeline
-      execution across Amazon S3, Amazon RDS, Amazon DynamoDB, and Amazon EMR.
-    humanURL: https://aws.amazon.com/datapipeline/
-    baseURL: https://datapipeline.amazonaws.com
-    tags:
-      - AWS
-      - Data Processing
-      - ETL
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/datapipeline/
-      - type: OpenAPI
-        url: openapi/amazon-data-pipeline-openapi.yml
-      - type: Pricing
-        url: https://aws.amazon.com/datapipeline/pricing/
-      - type: GettingStarted
-        url: https://aws.amazon.com/datapipeline/getting-started/
-      - type: FAQ
-        url: https://aws.amazon.com/datapipeline/faqs/
-      - type: APIReference
-        url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
-      - type: JSONSchema
-        url: json-schema/pipeline-object-schema.json
-      - type: JSONSchema
-        url: json-schema/pipeline-description-schema.json
-      - type: JSONLD
-        url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-objects-api
+  name: Amazon Data Pipeline Pipeline Objects API
+  description: Operations for managing pipeline object definitions
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipeline Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipeline-objects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: Pricing
+    url: https://aws.amazon.com/datapipeline/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/datapipeline/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/datapipeline/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-runs-api
+  name: Amazon Data Pipeline Pipeline Runs API
+  description: Operations for managing pipeline execution and task runs
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipeline Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipeline-runs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: Pricing
+    url: https://aws.amazon.com/datapipeline/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/datapipeline/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/datapipeline/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipelines-api
+  name: Amazon Data Pipeline Pipelines API
+  description: Operations for managing data pipelines
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: Pricing
+    url: https://aws.amazon.com/datapipeline/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/datapipeline/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/datapipeline/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-tags-api
+  name: Amazon Data Pipeline Tags API
+  description: Operations for managing pipeline tags
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: Pricing
+    url: https://aws.amazon.com/datapipeline/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/datapipeline/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/datapipeline/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-data-pipeline-agentic-access.yml

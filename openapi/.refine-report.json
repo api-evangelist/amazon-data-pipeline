@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-data-pipeline",
+  "sources": [
+    "amazon-data-pipeline-pipeline-objects-api-openapi.yml",
+    "amazon-data-pipeline-pipeline-runs-api-openapi.yml",
+    "amazon-data-pipeline-pipelines-api-openapi.yml",
+    "amazon-data-pipeline-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-data-pipeline-pipeline-objects-api-openapi.yml",
+    "amazon-data-pipeline-pipeline-runs-api-openapi.yml",
+    "amazon-data-pipeline-pipelines-api-openapi.yml",
+    "amazon-data-pipeline-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

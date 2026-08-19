@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Pipeline Pipeline Objects API",
+    "version": "2012-10-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Put Pipeline Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=PutPipelineDefinition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds tasks, schedules, and preconditions to the specified pipeline. This operation is idempotent."
+        },
+        {
+          "info": {
+            "name": "Get Pipeline Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=GetPipelineDefinition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition."
+        },
+        {
+          "info": {
+            "name": "Validate Pipeline Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=ValidatePipelineDefinition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates the specified pipeline definition to ensure that it is well formed and can be run without error."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

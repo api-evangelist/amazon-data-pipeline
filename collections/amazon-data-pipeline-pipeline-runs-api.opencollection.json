@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Pipeline Pipeline Objects Pipeline Runs API",
+    "version": "2012-10-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Activate Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=ActivatePipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates the specified pipeline and starts processing pipeline tasks. If the pipeline does not pass validation, activation fails."
+        },
+        {
+          "info": {
+            "name": "Deactivate Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=DeactivatePipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING state until the deactivation process completes."
+        },
+        {
+          "info": {
+            "name": "Query Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=QueryObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Queries the specified pipeline for the names of objects that match the specified set of conditions."
+        },
+        {
+          "info": {
+            "name": "Describe Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=DescribeObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets the object definitions for a set of objects associated with the pipeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

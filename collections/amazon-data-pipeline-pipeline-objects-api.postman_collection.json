@@ -1,0 +1,361 @@
+{
+  "item": [
+    {
+      "id": "a5e905f7-2311-4ebd-9f66-e806170f8380",
+      "name": "Pipeline Objects",
+      "description": {
+        "content": "Operations for managing pipeline object definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "06b09766-32b4-4bda-a37c-d0a2ce5e77d2",
+          "name": "Put Pipeline Definition",
+          "request": {
+            "name": "Put Pipeline Definition",
+            "description": {
+              "content": "Adds tasks, schedules, and preconditions to the specified pipeline. This operation is idempotent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "PutPipelineDefinition"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"parameterObjects\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parameterValues\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c9e402c-2f38-4dae-ab17-7328addf370e",
+              "name": "Pipeline definition updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"df-0937003B3GENERIC4EXAMPLE\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"Schedule\",\n      \"name\": \"DailySchedule\",\n      \"fields\": [\n        {\n          \"key\": \"type\",\n          \"stringValue\": \"Schedule\"\n        },\n        {\n          \"key\": \"startDateTime\",\n          \"stringValue\": \"2024-01-15T00:00:00\"\n        },\n        {\n          \"key\": \"period\",\n          \"stringValue\": \"1 Day\"\n        }\n      ]\n    },\n    {\n      \"id\": \"Default\",\n      \"name\": \"Default\",\n      \"fields\": [\n        {\n          \"key\": \"workerGroup\",\n          \"stringValue\": \"myWorkerGroup\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errored\": false,\n  \"validationErrors\": [],\n  \"validationWarnings\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "142b551f-fff9-4e6d-b4a9-b7409f97c342",
+          "name": "Get Pipeline Definition",
+          "request": {
+            "name": "Get Pipeline Definition",
+            "description": {
+              "content": "Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "GetPipelineDefinition"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f64aa7e-fe2a-4428-8b7d-605057f6ff49",
+              "name": "Pipeline definition returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"df-0937003B3GENERIC4EXAMPLE\",\n  \"version\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pipelineObjects\": [\n    {\n      \"id\": \"Schedule\",\n      \"name\": \"DailySchedule\",\n      \"fields\": [\n        {\n          \"key\": \"type\",\n          \"stringValue\": \"Schedule\"\n        }\n      ]\n    }\n  ],\n  \"parameterObjects\": [],\n  \"parameterValues\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42ecb22-1fc2-42b1-9811-d4e2dff210ff",
+          "name": "Validate Pipeline Definition",
+          "request": {
+            "name": "Validate Pipeline Definition",
+            "description": {
+              "content": "Validates the specified pipeline definition to ensure that it is well formed and can be run without error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ValidatePipelineDefinition"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"fields\": [\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"stringValue\": \"<string>\",\n          \"refValue\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8646d7a1-41df-4a1b-8ad1-bf2dbe7628c1",
+              "name": "Validation results returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"df-0937003B3GENERIC4EXAMPLE\",\n  \"pipelineObjects\": [\n    {\n      \"id\": \"Schedule\",\n      \"name\": \"DailySchedule\",\n      \"fields\": [\n        {\n          \"key\": \"type\",\n          \"stringValue\": \"Schedule\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errored\": false,\n  \"validationErrors\": [],\n  \"validationWarnings\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://datapipeline.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5731cff3-b451-4c7a-b72c-0f883a4ce13f",
+    "name": "AWS Data Pipeline Pipeline Objects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

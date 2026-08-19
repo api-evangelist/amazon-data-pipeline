@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Data Pipeline Pipeline Objects Pipelines API",
+    "version": "2012-10-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=CreatePipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline."
+        },
+        {
+          "info": {
+            "name": "Delete Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=DeletePipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a pipeline, its pipeline definition, and its run history. You cannot query or restore a deleted pipeline."
+        },
+        {
+          "info": {
+            "name": "Describe Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=DescribePipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves metadata about one or more pipelines. The information retrieved includes the name, description, inactivity timeout, and the list of the pipeline's schedules."
+        },
+        {
+          "info": {
+            "name": "List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://datapipeline.amazonaws.com/?Action=ListPipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists the pipeline identifiers for all active pipelines that you have permission to access."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

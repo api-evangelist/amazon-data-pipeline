@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPipelineApi
-  url: ../openapi/amazon-data-pipeline-openapi.yml
+- name: pipelineRunsApi
+  url: ../openapi/amazon-data-pipeline-pipeline-runs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-running-tasks

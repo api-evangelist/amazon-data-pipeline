@@ -11,8 +11,8 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPipelineApi
-  url: ../openapi/amazon-data-pipeline-openapi.yml
+- name: pipelineObjectsApi
+  url: ../openapi/amazon-data-pipeline-pipeline-objects-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: validate-then-put-definition

@@ -10,8 +10,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPipelineApi
-  url: ../openapi/amazon-data-pipeline-openapi.yml
+- name: pipelinesApi
+  url: ../openapi/amazon-data-pipeline-pipelines-api-openapi.yml
+  type: openapi
+- name: tagsApi
+  url: ../openapi/amazon-data-pipeline-tags-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: tag-and-confirm-pipeline

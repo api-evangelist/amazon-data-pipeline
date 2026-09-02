@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Pipeline Pipeline Objects Tags API
   description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
@@ -82,9 +82,6 @@ paths:
                   value: {}
 components:
   schemas:
-    AddTagsOutput:
-      description: Response after adding tags.
-      type: object
     RemoveTagsOutput:
       description: Response after removing tags.
       type: object
@@ -101,19 +98,9 @@ components:
         value:
           type: string
           description: The tag value
-    RemoveTagsRequest:
-      description: Request body for removing tags from a pipeline.
+    AddTagsOutput:
+      description: Response after adding tags.
       type: object
-      required:
-      - pipelineId
-      - tagKeys
-      properties:
-        pipelineId:
-          type: string
-        tagKeys:
-          type: array
-          items:
-            type: string
     AddTagsRequest:
       description: Request body for adding tags to a pipeline.
       type: object
@@ -127,6 +114,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    RemoveTagsRequest:
+      description: Request body for removing tags from a pipeline.
+      type: object
+      required:
+      - pipelineId
+      - tagKeys
+      properties:
+        pipelineId:
+          type: string
+        tagKeys:
+          type: array
+          items:
+            type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey

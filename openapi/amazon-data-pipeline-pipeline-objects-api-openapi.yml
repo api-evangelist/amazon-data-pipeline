@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Pipeline Pipeline Objects API
   description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
@@ -140,21 +140,36 @@ paths:
                     validationWarnings: []
 components:
   schemas:
-    PutPipelineDefinitionOutput:
-      description: Response after updating the pipeline definition.
+    PipelineObject:
+      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+      type: object
+      required:
+      - id
+      - name
+      - fields
+      properties:
+        id:
+          type: string
+          description: The identifier of the pipeline object
+        name:
+          type: string
+          description: The name of the pipeline object
+        fields:
+          type: array
+          description: Key-value pairs defining the object configuration
+          items:
+            $ref: '#/components/schemas/Field'
+    ValidationError:
+      description: An error found during pipeline definition validation.
       type: object
       properties:
-        errored:
-          type: boolean
-          description: Whether the definition has errors
-        validationErrors:
+        id:
+          type: string
+          description: The identifier of the object that caused the error
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
-        validationWarnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
+            type: string
     PutPipelineDefinitionRequest:
       description: Request body for setting the pipeline definition.
       type: object
@@ -179,34 +194,6 @@ components:
           description: Parameter value overrides
           items:
             type: object
-    ValidatePipelineDefinitionRequest:
-      description: Request body for validating a pipeline definition.
-      type: object
-      required:
-      - pipelineId
-      - pipelineObjects
-      properties:
-        pipelineId:
-          type: string
-        pipelineObjects:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineObject'
-    Field:
-      description: A key-value pair that defines a pipeline object or parameter property.
-      type: object
-      required:
-      - key
-      properties:
-        key:
-          type: string
-          description: The field key
-        stringValue:
-          type: string
-          description: The string value of the field
-        refValue:
-          type: string
-          description: A reference to another pipeline object
     ValidationWarning:
       description: A warning found during pipeline definition validation.
       type: object
@@ -217,36 +204,18 @@ components:
           type: array
           items:
             type: string
-    ValidationError:
-      description: An error found during pipeline definition validation.
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier of the object that caused the error
-        errors:
-          type: array
-          items:
-            type: string
-    PipelineObject:
-      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+    GetPipelineDefinitionRequest:
+      description: Request body for retrieving a pipeline definition.
       type: object
       required:
-      - id
-      - name
-      - fields
+      - pipelineId
       properties:
-        id:
+        pipelineId:
           type: string
-          description: The identifier of the pipeline object
-        name:
+          description: The ID of the pipeline
+        version:
           type: string
-          description: The name of the pipeline object
-        fields:
-          type: array
-          description: Key-value pairs defining the object configuration
-          items:
-            $ref: '#/components/schemas/Field'
+          description: The version of the pipeline definition (active or latest)
     GetPipelineDefinitionOutput:
       description: Response containing the pipeline definition.
       type: object
@@ -277,18 +246,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ValidationWarning'
-    GetPipelineDefinitionRequest:
-      description: Request body for retrieving a pipeline definition.
+    PutPipelineDefinitionOutput:
+      description: Response after updating the pipeline definition.
+      type: object
+      properties:
+        errored:
+          type: boolean
+          description: Whether the definition has errors
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
+    ValidatePipelineDefinitionRequest:
+      description: Request body for validating a pipeline definition.
       type: object
       required:
       - pipelineId
+      - pipelineObjects
       properties:
         pipelineId:
           type: string
-          description: The ID of the pipeline
-        version:
-          type: string
-          description: The version of the pipeline definition (active or latest)
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
   securitySchemes:
     awsSignatureV4:
       type: apiKey

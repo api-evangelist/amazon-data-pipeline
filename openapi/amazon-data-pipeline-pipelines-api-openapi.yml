@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Data Pipeline Pipeline Objects Pipelines API
   description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
@@ -152,78 +152,6 @@ paths:
                     hasMoreResults: false
 components:
   schemas:
-    ListPipelinesRequest:
-      description: Request body for listing pipelines.
-      type: object
-      properties:
-        marker:
-          type: string
-          description: The starting point for the results to be returned
-    DescribePipelinesOutput:
-      description: Response containing pipeline descriptions.
-      type: object
-      properties:
-        pipelineDescriptionList:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineDescription'
-    DeletePipelineRequest:
-      description: Request body for deleting a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline to delete
-    DeletePipelineOutput:
-      description: Response after deleting a pipeline.
-      type: object
-    DescribePipelinesRequest:
-      description: Request body for describing one or more pipelines.
-      type: object
-      required:
-      - pipelineIds
-      properties:
-        pipelineIds:
-          type: array
-          description: The IDs of the pipelines to describe
-          items:
-            type: string
-    Tag:
-      description: A key-value tag pair applied to a pipeline resource.
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The tag key
-        value:
-          type: string
-          description: The tag value
-    CreatePipelineRequest:
-      description: Request body for creating a new pipeline.
-      type: object
-      required:
-      - name
-      - uniqueId
-      properties:
-        name:
-          type: string
-          description: The name of the pipeline
-        uniqueId:
-          type: string
-          description: A unique identifier for the pipeline, used to prevent duplicate pipeline creation
-        description:
-          type: string
-          description: A description of the pipeline
-        tags:
-          type: array
-          description: Tags to apply to the pipeline
-          items:
-            $ref: '#/components/schemas/Tag'
     PipelineDescription:
       description: Contains pipeline metadata including name, description, fields, and tags.
       type: object
@@ -257,6 +185,105 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    ListPipelinesOutput:
+      description: Response containing a list of pipeline identifiers.
+      type: object
+      properties:
+        pipelineIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineIdName'
+        marker:
+          type: string
+          description: The starting point for the next page of results
+        hasMoreResults:
+          type: boolean
+    DescribePipelinesOutput:
+      description: Response containing pipeline descriptions.
+      type: object
+      properties:
+        pipelineDescriptionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineDescription'
+    DescribePipelinesRequest:
+      description: Request body for describing one or more pipelines.
+      type: object
+      required:
+      - pipelineIds
+      properties:
+        pipelineIds:
+          type: array
+          description: The IDs of the pipelines to describe
+          items:
+            type: string
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
+    PipelineIdName:
+      description: Contains a pipeline identifier and name.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The pipeline identifier
+        name:
+          type: string
+          description: The pipeline name
+    CreatePipelineRequest:
+      description: Request body for creating a new pipeline.
+      type: object
+      required:
+      - name
+      - uniqueId
+      properties:
+        name:
+          type: string
+          description: The name of the pipeline
+        uniqueId:
+          type: string
+          description: A unique identifier for the pipeline, used to prevent duplicate pipeline creation
+        description:
+          type: string
+          description: A description of the pipeline
+        tags:
+          type: array
+          description: Tags to apply to the pipeline
+          items:
+            $ref: '#/components/schemas/Tag'
+    DeletePipelineRequest:
+      description: Request body for deleting a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline to delete
+    ListPipelinesRequest:
+      description: Request body for listing pipelines.
+      type: object
+      properties:
+        marker:
+          type: string
+          description: The starting point for the results to be returned
+    CreatePipelineOutput:
+      description: Response after creating a pipeline.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier for the pipeline
     Field:
       description: A key-value pair that defines a pipeline object or parameter property.
       type: object
@@ -272,36 +299,9 @@ components:
         refValue:
           type: string
           description: A reference to another pipeline object
-    PipelineIdName:
-      description: Contains a pipeline identifier and name.
+    DeletePipelineOutput:
+      description: Response after deleting a pipeline.
       type: object
-      properties:
-        id:
-          type: string
-          description: The pipeline identifier
-        name:
-          type: string
-          description: The pipeline name
-    ListPipelinesOutput:
-      description: Response containing a list of pipeline identifiers.
-      type: object
-      properties:
-        pipelineIdList:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineIdName'
-        marker:
-          type: string
-          description: The starting point for the next page of results
-        hasMoreResults:
-          type: boolean
-    CreatePipelineOutput:
-      description: Response after creating a pipeline.
-      type: object
-      properties:
-        pipelineId:
-          type: string
-          description: The unique identifier for the pipeline
   securitySchemes:
     awsSignatureV4:
       type: apiKey

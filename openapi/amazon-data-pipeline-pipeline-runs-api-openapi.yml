@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: AWS Data Pipeline Pipeline Objects Pipeline Runs API
+  title: AWS Data Pipeline Pipeline Runs API
   description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
   version: '2012-10-29'
   contact:
@@ -158,6 +158,35 @@ paths:
                     hasMoreResults: false
 components:
   schemas:
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
+    DeactivatePipelineOutput:
+      description: Response after deactivating a pipeline.
+      type: object
+    DeactivatePipelineRequest:
+      description: Request body for deactivating a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+        cancelActive:
+          type: boolean
+          description: Whether to cancel currently running activities
     PipelineObject:
       description: A pipeline component that defines an activity, resource, schedule, or precondition.
       type: object
@@ -177,21 +206,6 @@ components:
           description: Key-value pairs defining the object configuration
           items:
             $ref: '#/components/schemas/Field'
-    ActivatePipelineRequest:
-      description: Request body for activating a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-        parameterValues:
-          type: array
-          items:
-            type: object
-        startTimestamp:
-          type: string
-          format: date-time
     DescribeObjectsRequest:
       description: Request body for describing pipeline objects.
       type: object
@@ -209,62 +223,21 @@ components:
           type: boolean
         marker:
           type: string
-    ActivatePipelineOutput:
-      description: Response after activating a pipeline.
-      type: object
-    Field:
-      description: A key-value pair that defines a pipeline object or parameter property.
-      type: object
-      required:
-      - key
-      properties:
-        key:
-          type: string
-          description: The field key
-        stringValue:
-          type: string
-          description: The string value of the field
-        refValue:
-          type: string
-          description: A reference to another pipeline object
-    DescribeObjectsOutput:
-      description: Response containing pipeline object definitions.
-      type: object
-      properties:
-        pipelineObjects:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineObject'
-        marker:
-          type: string
-        hasMoreResults:
-          type: boolean
-    DeactivatePipelineRequest:
-      description: Request body for deactivating a pipeline.
+    ActivatePipelineRequest:
+      description: Request body for activating a pipeline.
       type: object
       required:
       - pipelineId
       properties:
         pipelineId:
           type: string
-        cancelActive:
-          type: boolean
-          description: Whether to cancel currently running activities
-    DeactivatePipelineOutput:
-      description: Response after deactivating a pipeline.
-      type: object
-    QueryObjectsOutput:
-      description: Response containing matching pipeline object IDs.
-      type: object
-      properties:
-        ids:
+        parameterValues:
           type: array
           items:
-            type: string
-        marker:
+            type: object
+        startTimestamp:
           type: string
-        hasMoreResults:
-          type: boolean
+          format: date-time
     QueryObjectsRequest:
       description: Request body for querying pipeline objects.
       type: object
@@ -287,6 +260,33 @@ components:
           type: string
         limit:
           type: integer
+    ActivatePipelineOutput:
+      description: Response after activating a pipeline.
+      type: object
+    QueryObjectsOutput:
+      description: Response containing matching pipeline object IDs.
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+        marker:
+          type: string
+        hasMoreResults:
+          type: boolean
+    DescribeObjectsOutput:
+      description: Response containing pipeline object definitions.
+      type: object
+      properties:
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        marker:
+          type: string
+        hasMoreResults:
+          type: boolean
   securitySchemes:
     awsSignatureV4:
       type: apiKey

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: AWS Data Pipeline Pipeline Objects Pipelines API
+  title: AWS Data Pipeline Pipelines API
   description: The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. Supports creating pipeline definitions, scheduling data transformations, configuring retry and failure handling, and monitoring pipeline execution.
   version: '2012-10-29'
   contact:
@@ -152,6 +152,21 @@ paths:
                     hasMoreResults: false
 components:
   schemas:
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
     PipelineDescription:
       description: Contains pipeline metadata including name, description, fields, and tags.
       type: object
@@ -185,6 +200,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    DeletePipelineRequest:
+      description: Request body for deleting a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline to delete
+    DescribePipelinesRequest:
+      description: Request body for describing one or more pipelines.
+      type: object
+      required:
+      - pipelineIds
+      properties:
+        pipelineIds:
+          type: array
+          description: The IDs of the pipelines to describe
+          items:
+            type: string
     ListPipelinesOutput:
       description: Response containing a list of pipeline identifiers.
       type: object
@@ -198,25 +233,6 @@ components:
           description: The starting point for the next page of results
         hasMoreResults:
           type: boolean
-    DescribePipelinesOutput:
-      description: Response containing pipeline descriptions.
-      type: object
-      properties:
-        pipelineDescriptionList:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineDescription'
-    DescribePipelinesRequest:
-      description: Request body for describing one or more pipelines.
-      type: object
-      required:
-      - pipelineIds
-      properties:
-        pipelineIds:
-          type: array
-          description: The IDs of the pipelines to describe
-          items:
-            type: string
     Tag:
       description: A key-value tag pair applied to a pipeline resource.
       type: object
@@ -230,16 +246,31 @@ components:
         value:
           type: string
           description: The tag value
-    PipelineIdName:
-      description: Contains a pipeline identifier and name.
+    CreatePipelineOutput:
+      description: Response after creating a pipeline.
       type: object
       properties:
-        id:
+        pipelineId:
           type: string
-          description: The pipeline identifier
-        name:
+          description: The unique identifier for the pipeline
+    ListPipelinesRequest:
+      description: Request body for listing pipelines.
+      type: object
+      properties:
+        marker:
           type: string
-          description: The pipeline name
+          description: The starting point for the results to be returned
+    DescribePipelinesOutput:
+      description: Response containing pipeline descriptions.
+      type: object
+      properties:
+        pipelineDescriptionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineDescription'
+    DeletePipelineOutput:
+      description: Response after deleting a pipeline.
+      type: object
     CreatePipelineRequest:
       description: Request body for creating a new pipeline.
       type: object
@@ -261,47 +292,16 @@ components:
           description: Tags to apply to the pipeline
           items:
             $ref: '#/components/schemas/Tag'
-    DeletePipelineRequest:
-      description: Request body for deleting a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline to delete
-    ListPipelinesRequest:
-      description: Request body for listing pipelines.
+    PipelineIdName:
+      description: Contains a pipeline identifier and name.
       type: object
       properties:
-        marker:
+        id:
           type: string
-          description: The starting point for the results to be returned
-    CreatePipelineOutput:
-      description: Response after creating a pipeline.
-      type: object
-      properties:
-        pipelineId:
+          description: The pipeline identifier
+        name:
           type: string
-          description: The unique identifier for the pipeline
-    Field:
-      description: A key-value pair that defines a pipeline object or parameter property.
-      type: object
-      required:
-      - key
-      properties:
-        key:
-          type: string
-          description: The field key
-        stringValue:
-          type: string
-          description: The string value of the field
-        refValue:
-          type: string
-          description: A reference to another pipeline object
-    DeletePipelineOutput:
-      description: Response after deleting a pipeline.
-      type: object
+          description: The pipeline name
   securitySchemes:
     awsSignatureV4:
       type: apiKey

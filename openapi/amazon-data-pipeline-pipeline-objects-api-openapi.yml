@@ -140,25 +140,21 @@ paths:
                     validationWarnings: []
 components:
   schemas:
-    PipelineObject:
-      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
       type: object
       required:
-      - id
-      - name
-      - fields
+      - key
       properties:
-        id:
+        key:
           type: string
-          description: The identifier of the pipeline object
-        name:
+          description: The field key
+        stringValue:
           type: string
-          description: The name of the pipeline object
-        fields:
-          type: array
-          description: Key-value pairs defining the object configuration
-          items:
-            $ref: '#/components/schemas/Field'
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
     ValidationError:
       description: An error found during pipeline definition validation.
       type: object
@@ -194,28 +190,20 @@ components:
           description: Parameter value overrides
           items:
             type: object
-    ValidationWarning:
-      description: A warning found during pipeline definition validation.
+    ValidatePipelineDefinitionOutput:
+      description: Response containing pipeline definition validation results.
       type: object
       properties:
-        id:
-          type: string
-        warnings:
+        errored:
+          type: boolean
+        validationErrors:
           type: array
           items:
-            type: string
-    GetPipelineDefinitionRequest:
-      description: Request body for retrieving a pipeline definition.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline
-        version:
-          type: string
-          description: The version of the pipeline definition (active or latest)
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
     GetPipelineDefinitionOutput:
       description: Response containing the pipeline definition.
       type: object
@@ -232,20 +220,35 @@ components:
           type: array
           items:
             type: object
-    ValidatePipelineDefinitionOutput:
-      description: Response containing pipeline definition validation results.
+    PipelineObject:
+      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+      type: object
+      required:
+      - id
+      - name
+      - fields
+      properties:
+        id:
+          type: string
+          description: The identifier of the pipeline object
+        name:
+          type: string
+          description: The name of the pipeline object
+        fields:
+          type: array
+          description: Key-value pairs defining the object configuration
+          items:
+            $ref: '#/components/schemas/Field'
+    ValidationWarning:
+      description: A warning found during pipeline definition validation.
       type: object
       properties:
-        errored:
-          type: boolean
-        validationErrors:
+        id:
+          type: string
+        warnings:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
-        validationWarnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
+            type: string
     PutPipelineDefinitionOutput:
       description: Response after updating the pipeline definition.
       type: object
@@ -261,21 +264,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ValidationWarning'
-    Field:
-      description: A key-value pair that defines a pipeline object or parameter property.
+    GetPipelineDefinitionRequest:
+      description: Request body for retrieving a pipeline definition.
       type: object
       required:
-      - key
+      - pipelineId
       properties:
-        key:
+        pipelineId:
           type: string
-          description: The field key
-        stringValue:
+          description: The ID of the pipeline
+        version:
           type: string
-          description: The string value of the field
-        refValue:
-          type: string
-          description: A reference to another pipeline object
+          description: The version of the pipeline definition (active or latest)
     ValidatePipelineDefinitionRequest:
       description: Request body for validating a pipeline definition.
       type: object

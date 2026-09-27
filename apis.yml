@@ -152,7 +152,7 @@ apis:
     url: json-ld/amazon-data-pipeline-context.jsonld
 common:
 - type: Website
-  url: https://amazon.com
+  url: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html
 - type: AgenticAccess
   url: agentic-access/amazon-data-pipeline-agentic-access.yml
 - type: TrustCenter
@@ -299,5 +299,5 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
   url: https://apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product

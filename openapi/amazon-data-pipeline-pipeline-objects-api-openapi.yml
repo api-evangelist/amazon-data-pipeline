@@ -140,6 +140,110 @@ paths:
                     validationWarnings: []
 components:
   schemas:
+    GetPipelineDefinitionRequest:
+      description: Request body for retrieving a pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        version:
+          type: string
+          description: The version of the pipeline definition (active or latest)
+    PutPipelineDefinitionOutput:
+      description: Response after updating the pipeline definition.
+      type: object
+      properties:
+        errored:
+          type: boolean
+          description: Whether the definition has errors
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+    ValidatePipelineDefinitionOutput:
+      description: Response containing pipeline definition validation results.
+      type: object
+      properties:
+        errored:
+          type: boolean
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        validationWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+    ValidatePipelineDefinitionRequest:
+      description: Request body for validating a pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+    GetPipelineDefinitionOutput:
+      description: Response containing the pipeline definition.
+      type: object
+      properties:
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          items:
+            type: object
+        parameterValues:
+          type: array
+          items:
+            type: object
+    PutPipelineDefinitionRequest:
+      description: Request body for setting the pipeline definition.
+      type: object
+      required:
+      - pipelineId
+      - pipelineObjects
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline
+        pipelineObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineObject'
+        parameterObjects:
+          type: array
+          description: Parameter object definitions
+          items:
+            type: object
+        parameterValues:
+          type: array
+          description: Parameter value overrides
+          items:
+            type: object
+    ValidationWarning:
+      description: A warning found during pipeline definition validation.
+      type: object
+      properties:
+        id:
+          type: string
+        warnings:
+          type: array
+          items:
+            type: string
     Field:
       description: A key-value pair that defines a pipeline object or parameter property.
       type: object
@@ -166,60 +270,6 @@ components:
           type: array
           items:
             type: string
-    PutPipelineDefinitionRequest:
-      description: Request body for setting the pipeline definition.
-      type: object
-      required:
-      - pipelineId
-      - pipelineObjects
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline
-        pipelineObjects:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineObject'
-        parameterObjects:
-          type: array
-          description: Parameter object definitions
-          items:
-            type: object
-        parameterValues:
-          type: array
-          description: Parameter value overrides
-          items:
-            type: object
-    ValidatePipelineDefinitionOutput:
-      description: Response containing pipeline definition validation results.
-      type: object
-      properties:
-        errored:
-          type: boolean
-        validationErrors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-        validationWarnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
-    GetPipelineDefinitionOutput:
-      description: Response containing the pipeline definition.
-      type: object
-      properties:
-        pipelineObjects:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineObject'
-        parameterObjects:
-          type: array
-          items:
-            type: object
-        parameterValues:
-          type: array
-          items:
-            type: object
     PipelineObject:
       description: A pipeline component that defines an activity, resource, schedule, or precondition.
       type: object
@@ -239,56 +289,6 @@ components:
           description: Key-value pairs defining the object configuration
           items:
             $ref: '#/components/schemas/Field'
-    ValidationWarning:
-      description: A warning found during pipeline definition validation.
-      type: object
-      properties:
-        id:
-          type: string
-        warnings:
-          type: array
-          items:
-            type: string
-    PutPipelineDefinitionOutput:
-      description: Response after updating the pipeline definition.
-      type: object
-      properties:
-        errored:
-          type: boolean
-          description: Whether the definition has errors
-        validationErrors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-        validationWarnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationWarning'
-    GetPipelineDefinitionRequest:
-      description: Request body for retrieving a pipeline definition.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline
-        version:
-          type: string
-          description: The version of the pipeline definition (active or latest)
-    ValidatePipelineDefinitionRequest:
-      description: Request body for validating a pipeline definition.
-      type: object
-      required:
-      - pipelineId
-      - pipelineObjects
-      properties:
-        pipelineId:
-          type: string
-        pipelineObjects:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineObject'
   securitySchemes:
     awsSignatureV4:
       type: apiKey

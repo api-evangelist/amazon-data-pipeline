@@ -95,24 +95,8 @@ components:
           type: array
           items:
             type: string
-    Tag:
-      description: A key-value tag pair applied to a pipeline resource.
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The tag key
-        value:
-          type: string
-          description: The tag value
     RemoveTagsOutput:
       description: Response after removing tags.
-      type: object
-    AddTagsOutput:
-      description: Response after adding tags.
       type: object
     AddTagsRequest:
       description: Request body for adding tags to a pipeline.
@@ -127,6 +111,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    AddTagsOutput:
+      description: Response after adding tags.
+      type: object
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
   securitySchemes:
     awsSignatureV4:
       type: apiKey

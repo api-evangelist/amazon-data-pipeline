@@ -82,6 +82,22 @@ paths:
                   value: {}
 components:
   schemas:
+    AddTagsOutput:
+      description: Response after adding tags.
+      type: object
+    AddTagsRequest:
+      description: Request body for adding tags to a pipeline.
+      type: object
+      required:
+      - pipelineId
+      - tags
+      properties:
+        pipelineId:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
     RemoveTagsRequest:
       description: Request body for removing tags from a pipeline.
       type: object
@@ -97,22 +113,6 @@ components:
             type: string
     RemoveTagsOutput:
       description: Response after removing tags.
-      type: object
-    AddTagsRequest:
-      description: Request body for adding tags to a pipeline.
-      type: object
-      required:
-      - pipelineId
-      - tags
-      properties:
-        pipelineId:
-          type: string
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-    AddTagsOutput:
-      description: Response after adding tags.
       type: object
     Tag:
       description: A key-value tag pair applied to a pipeline resource.

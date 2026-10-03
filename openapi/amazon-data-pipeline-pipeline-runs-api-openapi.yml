@@ -173,34 +173,6 @@ components:
         startTimestamp:
           type: string
           format: date-time
-    DeactivatePipelineRequest:
-      description: Request body for deactivating a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-        cancelActive:
-          type: boolean
-          description: Whether to cancel currently running activities
-    DescribeObjectsRequest:
-      description: Request body for describing pipeline objects.
-      type: object
-      required:
-      - pipelineId
-      - objectIds
-      properties:
-        pipelineId:
-          type: string
-        objectIds:
-          type: array
-          items:
-            type: string
-        evaluateExpressions:
-          type: boolean
-        marker:
-          type: string
     DescribeObjectsOutput:
       description: Response containing pipeline object definitions.
       type: object
@@ -209,6 +181,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineObject'
+        marker:
+          type: string
+        hasMoreResults:
+          type: boolean
+    QueryObjectsOutput:
+      description: Response containing matching pipeline object IDs.
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
         marker:
           type: string
         hasMoreResults:
@@ -231,18 +215,17 @@ components:
         refValue:
           type: string
           description: A reference to another pipeline object
-    QueryObjectsOutput:
-      description: Response containing matching pipeline object IDs.
+    DeactivatePipelineRequest:
+      description: Request body for deactivating a pipeline.
       type: object
+      required:
+      - pipelineId
       properties:
-        ids:
-          type: array
-          items:
-            type: string
-        marker:
+        pipelineId:
           type: string
-        hasMoreResults:
+        cancelActive:
           type: boolean
+          description: Whether to cancel currently running activities
     QueryObjectsRequest:
       description: Request body for querying pipeline objects.
       type: object
@@ -265,9 +248,6 @@ components:
           type: string
         limit:
           type: integer
-    DeactivatePipelineOutput:
-      description: Response after deactivating a pipeline.
-      type: object
     PipelineObject:
       description: A pipeline component that defines an activity, resource, schedule, or precondition.
       type: object
@@ -287,6 +267,26 @@ components:
           description: Key-value pairs defining the object configuration
           items:
             $ref: '#/components/schemas/Field'
+    DeactivatePipelineOutput:
+      description: Response after deactivating a pipeline.
+      type: object
+    DescribeObjectsRequest:
+      description: Request body for describing pipeline objects.
+      type: object
+      required:
+      - pipelineId
+      - objectIds
+      properties:
+        pipelineId:
+          type: string
+        objectIds:
+          type: array
+          items:
+            type: string
+        evaluateExpressions:
+          type: boolean
+        marker:
+          type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey

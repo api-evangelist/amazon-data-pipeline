@@ -158,21 +158,9 @@ paths:
                     hasMoreResults: false
 components:
   schemas:
-    ActivatePipelineRequest:
-      description: Request body for activating a pipeline.
+    DeactivatePipelineOutput:
+      description: Response after deactivating a pipeline.
       type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-        parameterValues:
-          type: array
-          items:
-            type: object
-        startTimestamp:
-          type: string
-          format: date-time
     DescribeObjectsOutput:
       description: Response containing pipeline object definitions.
       type: object
@@ -185,6 +173,45 @@ components:
           type: string
         hasMoreResults:
           type: boolean
+    PipelineObject:
+      description: A pipeline component that defines an activity, resource, schedule, or precondition.
+      type: object
+      required:
+      - id
+      - name
+      - fields
+      properties:
+        id:
+          type: string
+          description: The identifier of the pipeline object
+        name:
+          type: string
+          description: The name of the pipeline object
+        fields:
+          type: array
+          description: Key-value pairs defining the object configuration
+          items:
+            $ref: '#/components/schemas/Field'
+    DescribeObjectsRequest:
+      description: Request body for describing pipeline objects.
+      type: object
+      required:
+      - pipelineId
+      - objectIds
+      properties:
+        pipelineId:
+          type: string
+        objectIds:
+          type: array
+          items:
+            type: string
+        evaluateExpressions:
+          type: boolean
+        marker:
+          type: string
+    ActivatePipelineOutput:
+      description: Response after activating a pipeline.
+      type: object
     QueryObjectsOutput:
       description: Response containing matching pipeline object IDs.
       type: object
@@ -197,35 +224,6 @@ components:
           type: string
         hasMoreResults:
           type: boolean
-    ActivatePipelineOutput:
-      description: Response after activating a pipeline.
-      type: object
-    Field:
-      description: A key-value pair that defines a pipeline object or parameter property.
-      type: object
-      required:
-      - key
-      properties:
-        key:
-          type: string
-          description: The field key
-        stringValue:
-          type: string
-          description: The string value of the field
-        refValue:
-          type: string
-          description: A reference to another pipeline object
-    DeactivatePipelineRequest:
-      description: Request body for deactivating a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-        cancelActive:
-          type: boolean
-          description: Whether to cancel currently running activities
     QueryObjectsRequest:
       description: Request body for querying pipeline objects.
       type: object
@@ -248,45 +246,47 @@ components:
           type: string
         limit:
           type: integer
-    PipelineObject:
-      description: A pipeline component that defines an activity, resource, schedule, or precondition.
-      type: object
-      required:
-      - id
-      - name
-      - fields
-      properties:
-        id:
-          type: string
-          description: The identifier of the pipeline object
-        name:
-          type: string
-          description: The name of the pipeline object
-        fields:
-          type: array
-          description: Key-value pairs defining the object configuration
-          items:
-            $ref: '#/components/schemas/Field'
-    DeactivatePipelineOutput:
-      description: Response after deactivating a pipeline.
-      type: object
-    DescribeObjectsRequest:
-      description: Request body for describing pipeline objects.
+    DeactivatePipelineRequest:
+      description: Request body for deactivating a pipeline.
       type: object
       required:
       - pipelineId
-      - objectIds
       properties:
         pipelineId:
           type: string
-        objectIds:
+        cancelActive:
+          type: boolean
+          description: Whether to cancel currently running activities
+    ActivatePipelineRequest:
+      description: Request body for activating a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+        parameterValues:
           type: array
           items:
-            type: string
-        evaluateExpressions:
-          type: boolean
-        marker:
+            type: object
+        startTimestamp:
           type: string
+          format: date-time
+    Field:
+      description: A key-value pair that defines a pipeline object or parameter property.
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: The field key
+        stringValue:
+          type: string
+          description: The string value of the field
+        refValue:
+          type: string
+          description: A reference to another pipeline object
   securitySchemes:
     awsSignatureV4:
       type: apiKey

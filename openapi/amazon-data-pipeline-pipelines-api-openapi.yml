@@ -152,40 +152,6 @@ paths:
                     hasMoreResults: false
 components:
   schemas:
-    CreatePipelineOutput:
-      description: Response after creating a pipeline.
-      type: object
-      properties:
-        pipelineId:
-          type: string
-          description: The unique identifier for the pipeline
-    DescribePipelinesRequest:
-      description: Request body for describing one or more pipelines.
-      type: object
-      required:
-      - pipelineIds
-      properties:
-        pipelineIds:
-          type: array
-          description: The IDs of the pipelines to describe
-          items:
-            type: string
-    DeletePipelineRequest:
-      description: Request body for deleting a pipeline.
-      type: object
-      required:
-      - pipelineId
-      properties:
-        pipelineId:
-          type: string
-          description: The ID of the pipeline to delete
-    ListPipelinesRequest:
-      description: Request body for listing pipelines.
-      type: object
-      properties:
-        marker:
-          type: string
-          description: The starting point for the results to be returned
     CreatePipelineRequest:
       description: Request body for creating a new pipeline.
       type: object
@@ -207,6 +173,51 @@ components:
           description: Tags to apply to the pipeline
           items:
             $ref: '#/components/schemas/Tag'
+    DeletePipelineRequest:
+      description: Request body for deleting a pipeline.
+      type: object
+      required:
+      - pipelineId
+      properties:
+        pipelineId:
+          type: string
+          description: The ID of the pipeline to delete
+    ListPipelinesOutput:
+      description: Response containing a list of pipeline identifiers.
+      type: object
+      properties:
+        pipelineIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineIdName'
+        marker:
+          type: string
+          description: The starting point for the next page of results
+        hasMoreResults:
+          type: boolean
+    ListPipelinesRequest:
+      description: Request body for listing pipelines.
+      type: object
+      properties:
+        marker:
+          type: string
+          description: The starting point for the results to be returned
+    DeletePipelineOutput:
+      description: Response after deleting a pipeline.
+      type: object
+    Tag:
+      description: A key-value tag pair applied to a pipeline resource.
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The tag key
+        value:
+          type: string
+          description: The tag value
     DescribePipelinesOutput:
       description: Response containing pipeline descriptions.
       type: object
@@ -215,6 +226,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineDescription'
+    PipelineIdName:
+      description: Contains a pipeline identifier and name.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The pipeline identifier
+        name:
+          type: string
+          description: The pipeline name
+    CreatePipelineOutput:
+      description: Response after creating a pipeline.
+      type: object
+      properties:
+        pipelineId:
+          type: string
+          description: The unique identifier for the pipeline
     Field:
       description: A key-value pair that defines a pipeline object or parameter property.
       type: object
@@ -230,22 +258,6 @@ components:
         refValue:
           type: string
           description: A reference to another pipeline object
-    Tag:
-      description: A key-value tag pair applied to a pipeline resource.
-      type: object
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The tag key
-        value:
-          type: string
-          description: The tag value
-    DeletePipelineOutput:
-      description: Response after deleting a pipeline.
-      type: object
     PipelineDescription:
       description: Contains pipeline metadata including name, description, fields, and tags.
       type: object
@@ -279,29 +291,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
-    PipelineIdName:
-      description: Contains a pipeline identifier and name.
+    DescribePipelinesRequest:
+      description: Request body for describing one or more pipelines.
       type: object
+      required:
+      - pipelineIds
       properties:
-        id:
-          type: string
-          description: The pipeline identifier
-        name:
-          type: string
-          description: The pipeline name
-    ListPipelinesOutput:
-      description: Response containing a list of pipeline identifiers.
-      type: object
-      properties:
-        pipelineIdList:
+        pipelineIds:
           type: array
+          description: The IDs of the pipelines to describe
           items:
-            $ref: '#/components/schemas/PipelineIdName'
-        marker:
-          type: string
-          description: The starting point for the next page of results
-        hasMoreResults:
-          type: boolean
+            type: string
   securitySchemes:
     awsSignatureV4:
       type: apiKey

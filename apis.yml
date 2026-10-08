@@ -151,6 +151,12 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-data-pipeline-context.jsonld
 common:
+- type: Plans
+  url: plans/amazon-data-pipeline-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/amazon-data-pipeline-rate-limits.yml
+- type: FinOps
+  url: finops/amazon-data-pipeline-finops.yml
 - type: Website
   url: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html
 - type: AgenticAccess

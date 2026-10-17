@@ -85,22 +85,6 @@ components:
     RemoveTagsOutput:
       description: Response after removing tags.
       type: object
-    AddTagsOutput:
-      description: Response after adding tags.
-      type: object
-    RemoveTagsRequest:
-      description: Request body for removing tags from a pipeline.
-      type: object
-      required:
-      - pipelineId
-      - tagKeys
-      properties:
-        pipelineId:
-          type: string
-        tagKeys:
-          type: array
-          items:
-            type: string
     AddTagsRequest:
       description: Request body for adding tags to a pipeline.
       type: object
@@ -114,6 +98,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    RemoveTagsRequest:
+      description: Request body for removing tags from a pipeline.
+      type: object
+      required:
+      - pipelineId
+      - tagKeys
+      properties:
+        pipelineId:
+          type: string
+        tagKeys:
+          type: array
+          items:
+            type: string
+    AddTagsOutput:
+      description: Response after adding tags.
+      type: object
     Tag:
       description: A key-value tag pair applied to a pipeline resource.
       type: object

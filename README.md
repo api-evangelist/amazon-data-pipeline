@@ -1,4 +1,4 @@
-# Amazon Data Pipeline (amazon-data-pipeline)
+# Amazon Data Pipeline
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,80 +66,227 @@
 
 AWS Data Pipeline is a web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals. With AWS Data Pipeline, you can regularly access your data where it is stored, transform and process it at scale, and efficiently transfer the results to AWS services such as Amazon S3, Amazon RDS, Amazon DynamoDB, and Amazon EMR. It supports data-driven workflows with retry, failure handling, and scheduling capabilities.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/amazon-data-pipeline/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/amazon-data-pipeline/refs/heads/main/apis.yml)
+**Areas:** AWS · Data Processing · ETL · Workflows · Data Pipeline · Automation
 
-## Scope
+## Amazon Data Pipeline on APIs.io
 
-- **Type:** Index
+Everything profiled for Amazon Data Pipeline is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/amazon-data-pipeline/](https://apis.io/providers/amazon-data-pipeline/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- AWS
-- Data Processing
-- ETL
-- Workflows
-- Data Pipeline
-- Automation
+- [Amazon Data Pipeline Objects API](https://apis.io/apis/amazon-data-pipeline/amazon-data-pipeline-pipeline-objects-api/) — Operations for managing pipeline object definitions
+- [Amazon Data Pipeline Runs API](https://apis.io/apis/amazon-data-pipeline/amazon-data-pipeline-pipeline-runs-api/) — Operations for managing pipeline execution and task runs
+- [Amazon Data Pipeline Pipelines API](https://apis.io/apis/amazon-data-pipeline/amazon-data-pipeline-pipelines-api/) — Operations for managing data pipelines
+- [Amazon Data Pipeline Tags API](https://apis.io/apis/amazon-data-pipeline/amazon-data-pipeline-tags-api/) — Operations for managing pipeline tags
+- [Amazon Data Pipeline Data Pipeline Operations API](https://apis.io/apis/amazon-data-pipeline/amazon-data-pipeline-operations-api/) — The Data Pipeline Operations API from Amazon Data Pipeline — 6 operation(s) for data pipeline operations.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (9)
 
-### AWS Data Pipeline API
+Multi-step workflows that chain operations into a business task.
 
-The AWS Data Pipeline API provides a web service for processing and moving data between different AWS compute and storage services as well as on-premises data sources at specified intervals. The API allows you to create pipeline definitions, schedule data transformations, configure retry and failure handling logic, and monitor pipeline execution across Amazon S3, Amazon RDS, Amazon DynamoDB, and Amazon EMR.
+- [Amazon Data Pipeline Clone Pipeline](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-clone-pipeline-workflow/)
+- [Amazon Data Pipeline Deactivate and Delete](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-deactivate-and-delete-workflow/)
+- [Amazon Data Pipeline Export Definition](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-export-definition-workflow/)
+- [Amazon Data Pipeline Inspect Running Tasks](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-inspect-running-tasks-workflow/)
+- [Amazon Data Pipeline List and Describe](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-list-and-describe-workflow/)
+- [Amazon Data Pipeline Provision and Activate](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-provision-and-activate-workflow/)
+- [Amazon Data Pipeline Redeploy Definition](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-redeploy-definition-workflow/)
+- [Amazon Data Pipeline Tag and Confirm](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-tag-and-confirm-workflow/)
+- [Amazon Data Pipeline Validate Then Put Definition](https://apis.io/arazzos/amazon-data-pipeline/amazon-data-pipeline-validate-then-put-definition-workflow/)
 
-- **Human URL:** [https://aws.amazon.com/datapipeline/](https://aws.amazon.com/datapipeline/)
-- **Base URL:** `https://datapipeline.amazonaws.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- AWS
-- Data Processing
-- ETL
-- Workflows
+- [Amazon Data Pipeline Agentic Access](https://apis.io/agentic-access/amazon-data-pipeline/amazon-data-pipeline-agentic-access/)
 
-#### Properties
+#### JSON Schema (16)
 
+The data models the API reads and writes.
+
+- [Activate Pipeline Request](https://apis.io/schemas/amazon-data-pipeline/activate-pipeline-request/)
+- [Create Pipeline Output](https://apis.io/schemas/amazon-data-pipeline/create-pipeline-output/)
+- [Create Pipeline Request](https://apis.io/schemas/amazon-data-pipeline/create-pipeline-request/)
+- [Describe Pipelines Output](https://apis.io/schemas/amazon-data-pipeline/describe-pipelines-output/)
+- [Describe Pipelines Request](https://apis.io/schemas/amazon-data-pipeline/describe-pipelines-request/)
+- [Error](https://apis.io/schemas/amazon-data-pipeline/error/)
+- [Field](https://apis.io/schemas/amazon-data-pipeline/field/)
+- [Get Pipeline Definition Output](https://apis.io/schemas/amazon-data-pipeline/get-pipeline-definition-output/)
+- [List Pipelines Output](https://apis.io/schemas/amazon-data-pipeline/list-pipelines-output/)
+- [Pipeline Description](https://apis.io/schemas/amazon-data-pipeline/pipeline-description/)
+- [Pipeline ID Name](https://apis.io/schemas/amazon-data-pipeline/pipeline-id-name/)
+- [Pipeline Object](https://apis.io/schemas/amazon-data-pipeline/pipeline-object/)
+- [Put Pipeline Definition Output](https://apis.io/schemas/amazon-data-pipeline/put-pipeline-definition-output/)
+- [Query Objects Output](https://apis.io/schemas/amazon-data-pipeline/query-objects-output/)
+- [Tag](https://apis.io/schemas/amazon-data-pipeline/tag/)
+- [Validation Error](https://apis.io/schemas/amazon-data-pipeline/validation-error/)
+
+#### JSON Structure (16)
+
+Data models expressed in JSON Structure.
+
+- [Activate Pipeline Request Structure](https://apis.io/json-structure/amazon-data-pipeline/activate-pipeline-request-structure/)
+- [Create Pipeline Output Structure](https://apis.io/json-structure/amazon-data-pipeline/create-pipeline-output-structure/)
+- [Create Pipeline Request Structure](https://apis.io/json-structure/amazon-data-pipeline/create-pipeline-request-structure/)
+- [Describe Pipelines Output Structure](https://apis.io/json-structure/amazon-data-pipeline/describe-pipelines-output-structure/)
+- [Describe Pipelines Request Structure](https://apis.io/json-structure/amazon-data-pipeline/describe-pipelines-request-structure/)
+- [Error Structure](https://apis.io/json-structure/amazon-data-pipeline/error-structure/)
+- [Field Structure](https://apis.io/json-structure/amazon-data-pipeline/field-structure/)
+- [Get Pipeline Definition Output Structure](https://apis.io/json-structure/amazon-data-pipeline/get-pipeline-definition-output-structure/)
+- [List Pipelines Output Structure](https://apis.io/json-structure/amazon-data-pipeline/list-pipelines-output-structure/)
+- [Pipeline Description Structure](https://apis.io/json-structure/amazon-data-pipeline/pipeline-description-structure/)
+- [Pipeline Id Name Structure](https://apis.io/json-structure/amazon-data-pipeline/pipeline-id-name-structure/)
+- [Pipeline Object Structure](https://apis.io/json-structure/amazon-data-pipeline/pipeline-object-structure/)
+- [Put Pipeline Definition Output Structure](https://apis.io/json-structure/amazon-data-pipeline/put-pipeline-definition-output-structure/)
+- [Query Objects Output Structure](https://apis.io/json-structure/amazon-data-pipeline/query-objects-output-structure/)
+- [Tag Structure](https://apis.io/json-structure/amazon-data-pipeline/tag-structure/)
+- [Validation Error Structure](https://apis.io/json-structure/amazon-data-pipeline/validation-error-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Amazon Data Pipeline Context](https://apis.io/jsonld/amazon-data-pipeline/amazon-data-pipeline-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [AWS Data Pipeline Vocabulary](https://apis.io/vocabularies/amazon-data-pipeline/amazon-data-pipeline-vocabulary/)
+
+#### Examples (16)
+
+Example requests and responses.
+
+- [Activate Pipeline Request Example](https://apis.io/examples/amazon-data-pipeline/activate-pipeline-request-example/)
+- [Create Pipeline Output Example](https://apis.io/examples/amazon-data-pipeline/create-pipeline-output-example/)
+- [Create Pipeline Request Example](https://apis.io/examples/amazon-data-pipeline/create-pipeline-request-example/)
+- [Describe Pipelines Output Example](https://apis.io/examples/amazon-data-pipeline/describe-pipelines-output-example/)
+- [Describe Pipelines Request Example](https://apis.io/examples/amazon-data-pipeline/describe-pipelines-request-example/)
+- [Error Example](https://apis.io/examples/amazon-data-pipeline/error-example/)
+- [Field Example](https://apis.io/examples/amazon-data-pipeline/field-example/)
+- [Get Pipeline Definition Output Example](https://apis.io/examples/amazon-data-pipeline/get-pipeline-definition-output-example/)
+- [List Pipelines Output Example](https://apis.io/examples/amazon-data-pipeline/list-pipelines-output-example/)
+- [Pipeline Description Example](https://apis.io/examples/amazon-data-pipeline/pipeline-description-example/)
+- [Pipeline Id Name Example](https://apis.io/examples/amazon-data-pipeline/pipeline-id-name-example/)
+- [Pipeline Object Example](https://apis.io/examples/amazon-data-pipeline/pipeline-object-example/)
+- [Put Pipeline Definition Output Example](https://apis.io/examples/amazon-data-pipeline/put-pipeline-definition-output-example/)
+- [Query Objects Output Example](https://apis.io/examples/amazon-data-pipeline/query-objects-output-example/)
+- [Tag Example](https://apis.io/examples/amazon-data-pipeline/tag-example/)
+- [Validation Error Example](https://apis.io/examples/amazon-data-pipeline/validation-error-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [AWS Data Pipeline API](https://apis.io/collections/amazon-data-pipeline/open-amazon-data-pipeline/)
+- [AWS Data Pipeline Pipeline Objects API](https://apis.io/collections/amazon-data-pipeline/open-amazon-data-pipeline-pipeline-objects-api/)
+- [AWS Data Pipeline Pipeline Objects Pipeline Runs API](https://apis.io/collections/amazon-data-pipeline/open-amazon-data-pipeline-pipeline-runs-api/)
+- [AWS Data Pipeline Pipeline Objects Pipelines API](https://apis.io/collections/amazon-data-pipeline/open-amazon-data-pipeline-pipelines-api/)
+- [AWS Data Pipeline Pipeline Objects Tags API](https://apis.io/collections/amazon-data-pipeline/open-amazon-data-pipeline-tags-api/)
+- [AWS Data Pipeline API](https://apis.io/collections/amazon-data-pipeline/postman-amazon-data-pipeline/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Amazon Data Pipeline — jsonschema rules](https://apis.io/rules/amazon-data-pipeline/amazon-data-pipeline-jsonschema-spectral-rules/)
+- [Amazon Data Pipeline API Rules](https://apis.io/rules/amazon-data-pipeline/amazon-data-pipeline-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Amazon Data Pipeline Authentication](https://apis.io/security/amazon-data-pipeline/amazon-data-pipeline-authentication/)
+- [Amazon Data Pipeline Domain Security](https://apis.io/security/amazon-data-pipeline/amazon-data-pipeline-domain-security/)
+- [Amazon Data Pipeline Trust Center](https://apis.io/security/amazon-data-pipeline/amazon-data-pipeline-trust-center/)
+- [Amazon Data Pipeline Vulnerability Disclosure](https://apis.io/security/amazon-data-pipeline/amazon-data-pipeline-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Amazon Data Pipeline Plans Pricing](https://apis.io/plans/amazon-data-pipeline/amazon-data-pipeline-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Amazon Data Pipeline Rate Limits](https://apis.io/rate-limits/amazon-data-pipeline/amazon-data-pipeline-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Amazon Data Pipeline Finops](https://apis.io/finops/amazon-data-pipeline/amazon-data-pipeline-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html)
 - [Documentation](https://docs.aws.amazon.com/datapipeline/)
-- [OpenAPI](openapi/amazon-data-pipeline-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/amazon-data-pipeline.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/amazon-data-pipeline.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Pricing](https://aws.amazon.com/datapipeline/pricing/)
-- [Getting Started](https://aws.amazon.com/datapipeline/getting-started/)
-- [F A Q](https://aws.amazon.com/datapipeline/faqs/)
-- [API Reference](https://docs.aws.amazon.com/datapipeline/latest/APIReference/)
-- [JSON Schema](json-schema/pipeline-object-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/pipeline-description-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/amazon-data-pipeline-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://aws.amazon.com/datapipeline/)
-- [Developer Portal](https://aws.amazon.com/datapipeline/)
-- [Documentation](https://docs.aws.amazon.com/datapipeline/)
-- [Terms of Service](https://aws.amazon.com/service-terms/)
-- [Privacy Policy](https://aws.amazon.com/privacy/)
 - [Support](https://aws.amazon.com/premiumsupport/)
-- [GitHub Organization](https://github.com/aws)
-- [Console](https://console.aws.amazon.com/datapipeline/)
-- [Sign Up](https://portal.aws.amazon.com/billing/signup)
-- [Login](https://signin.aws.amazon.com/)
-- [Status Page](https://health.aws.amazon.com/health/status)
-- [Contact](https://aws.amazon.com/contact-us/)
-- [Spectral Rules](rules/amazon-data-pipeline-spectral-rules.yml)
-- [Vocabulary](vocabulary/amazon-data-pipeline-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://aws.amazon.com/marketplace)
+- [Terms of service](https://aws.amazon.com/service-terms/)
+- [Privacy policy](https://aws.amazon.com/privacy/)
+- [GitHub](https://github.com/aws)
+- [Status](https://health.aws.amazon.com/health/status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 52.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 61.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 44.0 |
+| Access clarity | 53.9 |
+
+**Agent readiness 24.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/amazon-data-pipeline/](https://apis.io/providers/amazon-data-pipeline/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Amazon Data Pipeline: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/amazon-data-pipeline/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).

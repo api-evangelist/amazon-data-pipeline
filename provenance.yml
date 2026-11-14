@@ -5,6 +5,9 @@ artifacts:
   agentic-access/amazon-data-pipeline-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/amazon-data-pipeline-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/amazon-data-pipeline-clone-pipeline-workflow.yml:
     method: derived
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
@@ -34,6 +37,12 @@ artifacts:
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   authentication/amazon-data-pipeline-authentication.yml:
     method: derived
+    evidence: declared in the artifact
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
+  cli/amazon-data-pipeline-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/amazon-data-pipeline-pipeline-objects-api.opencollection.json:
     method: derived
@@ -65,6 +74,24 @@ artifacts:
   collections/amazon-data-pipeline.postman_collection.json:
     method: derived
     evidence: openapi/amazon-data-pipeline
+  compliance/amazon-data-pipeline-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-data-pipeline-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-data-pipeline-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/amazon-data-pipeline-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  eligibility/amazon-data-pipeline-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
+  errors/amazon-data-pipeline-problem-types.yml:
+    method: searched
+    evidence: declared in the artifact
   examples/activate-pipeline-request-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -119,6 +146,9 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-data-pipeline-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -129,6 +159,24 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/activate-pipeline-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-poll-for-task-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-query-objects-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-query-objects-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-report-task-runner-heartbeat-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-set-status-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-data-pipeline-set-task-status-input-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/create-pipeline-output-schema.json:
@@ -227,7 +275,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -296,10 +344,21 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/amazon-data-pipeline-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amazon-data-pipeline-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/amazon-data-pipeline-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-data-pipeline-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-data-pipeline-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-data-pipeline-operations-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -315,16 +374,31 @@ artifacts:
   openapi/amazon-data-pipeline-tags-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  plans/amazon-data-pipeline-plans-pricing.yml:
-    method: generated
+  packages/amazon-data-pipeline-packages.yml:
+    method: searched
     evidence: declared in the artifact
+  patterns/amazon-data-pipeline-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
+  plans/amazon-data-pipeline-plans-pricing.yml:
+    method: unknown
+    evidence: no authorship recorded
   postman/amazon-data-pipeline.postman_collection.json:
     method: derived
     evidence: openapi/amazon-data-pipeline
+  privacy/amazon-data-pipeline-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-data-pipeline-rate-limits.yml:
+    method: searched
+    evidence: declared in the artifact
+  regulatory/amazon-data-pipeline-regulatory-posture.yml:
+    method: unknown
+    evidence: no authorship recorded
+  rules/amazon-data-pipeline-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
-  rules/amazon-data-pipeline-jsonschema-spectral-rules.yml:
+  rules/amazon-data-pipeline-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-data-pipeline-spectral-rules.yml:
@@ -343,8 +417,27 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   smithy/data-pipeline-2012-10-29.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/data-pipeline/service/2012-10-29/data-pipeline-2012-10-29.json
+      (sha256 406b299c4ae1, fetched 2026-11-11T21:08:07+00:00)
+  terms/amazon-data-pipeline-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-data-pipeline-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-data-pipeline-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-data-pipeline-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-data-pipeline-aws-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-data-pipeline-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-data-pipeline-well-known.yml:
     method: unknown
     evidence: no authorship recorded

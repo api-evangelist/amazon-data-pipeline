@@ -1,12 +1,14 @@
 aid: amazon-data-pipeline
+
 name: Amazon Data Pipeline
-description: AWS Data Pipeline is a web service that helps you reliably process and move data between
-  different AWS compute and storage services, as well as on-premises data sources, at specified intervals.
-  With AWS Data Pipeline, you can regularly access your data where it is stored, transform and process
-  it at scale, and efficiently transfer the results to AWS services such as Amazon S3, Amazon RDS, Amazon
-  DynamoDB, and Amazon EMR. It supports data-driven workflows with retry, failure handling, and scheduling
-  capabilities.
+
+description: AWS Data Pipeline is a web service that helps you reliably process and move data between different AWS compute and storage services,
+  as well as on-premises data sources, at specified intervals. With AWS Data Pipeline, you can regularly access your data where it is stored,
+  transform and process it at scale, and efficiently transfer the results to AWS services such as Amazon S3, Amazon RDS, Amazon DynamoDB, and
+  Amazon EMR. It supports data-driven workflows with retry, failure handling, and scheduling capabilities.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -19,24 +21,24 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: paid
+  onboarding: unknown
   trial: false
-  try_now: true
+  try_now: false
   public: false
-  gated: none
-  gated_source:
-  - onboarding
-  label: Freemium · Self-serve signup
-  confidence: medium
+  label: Paid
+  confidence: high
   source:
-  - plans
+  - finops
   - authentication
+  - rate-limits
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-data-pipeline.png
+
 tags:
 - Amazon Web Services
 - Data Processing
@@ -51,129 +53,69 @@ tags_raw:
 - Workflows
 - Data Pipeline
 - Automation
+
 url: https://raw.githubusercontent.com/api-evangelist/amazon-data-pipeline/refs/heads/main/apis.yml
+
 created: '2024-01-15'
+
 modified: '2026-09-16'
+
 specificationVersion: '0.23'
-apis:
-- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-objects-api
-  name: Amazon Data Pipeline Objects API
-  description: Operations for managing pipeline object definitions
-  humanURL: https://aws.amazon.com/datapipeline/
-  baseURL: https://datapipeline.amazonaws.com
-  tags:
-  - Pipeline Objects
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-pipeline-pipeline-objects-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/datapipeline/
-  - type: Pricing
-    url: https://aws.amazon.com/datapipeline/pricing/
-  - type: GettingStarted
-    url: https://aws.amazon.com/datapipeline/getting-started/
-  - type: FAQ
-    url: https://aws.amazon.com/datapipeline/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
-  - type: JSONSchema
-    url: json-schema/pipeline-object-schema.json
-  - type: JSONSchema
-    url: json-schema/pipeline-description-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-pipeline-context.jsonld
-- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-runs-api
-  name: Amazon Data Pipeline Runs API
-  description: Operations for managing pipeline execution and task runs
-  humanURL: https://aws.amazon.com/datapipeline/
-  baseURL: https://datapipeline.amazonaws.com
-  tags:
-  - Pipeline Runs
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-pipeline-pipeline-runs-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/datapipeline/
-  - type: Pricing
-    url: https://aws.amazon.com/datapipeline/pricing/
-  - type: GettingStarted
-    url: https://aws.amazon.com/datapipeline/getting-started/
-  - type: FAQ
-    url: https://aws.amazon.com/datapipeline/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
-  - type: JSONSchema
-    url: json-schema/pipeline-object-schema.json
-  - type: JSONSchema
-    url: json-schema/pipeline-description-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-pipeline-context.jsonld
-- aid: amazon-data-pipeline:amazon-data-pipeline-pipelines-api
-  name: Amazon Data Pipeline Pipelines API
-  description: Operations for managing data pipelines
-  humanURL: https://aws.amazon.com/datapipeline/
-  baseURL: https://datapipeline.amazonaws.com
-  tags:
-  - Pipelines
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-pipeline-pipelines-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/datapipeline/
-  - type: Pricing
-    url: https://aws.amazon.com/datapipeline/pricing/
-  - type: GettingStarted
-    url: https://aws.amazon.com/datapipeline/getting-started/
-  - type: FAQ
-    url: https://aws.amazon.com/datapipeline/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
-  - type: JSONSchema
-    url: json-schema/pipeline-object-schema.json
-  - type: JSONSchema
-    url: json-schema/pipeline-description-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-pipeline-context.jsonld
-- aid: amazon-data-pipeline:amazon-data-pipeline-tags-api
-  name: Amazon Data Pipeline Tags API
-  description: Operations for managing pipeline tags
-  humanURL: https://aws.amazon.com/datapipeline/
-  baseURL: https://datapipeline.amazonaws.com
-  tags:
-  - Tags
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-pipeline-tags-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/datapipeline/
-  - type: Pricing
-    url: https://aws.amazon.com/datapipeline/pricing/
-  - type: GettingStarted
-    url: https://aws.amazon.com/datapipeline/getting-started/
-  - type: FAQ
-    url: https://aws.amazon.com/datapipeline/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
-  - type: JSONSchema
-    url: json-schema/pipeline-object-schema.json
-  - type: JSONSchema
-    url: json-schema/pipeline-description-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-data-pipeline-context.jsonld
-- aid: amazon-data-pipeline:amazon-data-pipeline-operations-api
-  name: Amazon Data Pipeline Data Pipeline Operations API
-  description: >-
-    The Data Pipeline Operations API from Amazon Data Pipeline — 6 operation(s) for data pipeline operations.
-  humanURL: https://aws.amazon.com/datapipeline/
-  baseURL: https://datapipeline.amazonaws.com
-  tags:
-  - Data Pipeline Operations
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-data-pipeline-operations-api-openapi.yml
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+
 common:
-- type: Plans
-  url: plans/amazon-data-pipeline-plans-pricing.yml
+- type: Spectral
+  url: rules/amazon-data-pipeline-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-data-pipeline-rules.yml
+- type: Spectral
+  url: rules/amazon-data-pipeline-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-data-pipeline-vocabulary.yml
+- type: DataModel
+  url: data-model/amazon-data-pipeline-data-model.yml
+- type: CLI
+  url: cli/amazon-data-pipeline-cli.yml
+- type: Idempotency
+  url: conventions/amazon-data-pipeline-conventions.yml
+- type: Conventions
+  url: conventions/amazon-data-pipeline-conventions.yml
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Security
+  url: https://hackerone.com/amazonvrp
+- type: Deprecation
+  url: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html
+- type: Lifecycle
+  url: lifecycle/amazon-data-pipeline-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/amazon-data-pipeline-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-data-pipeline-conformance.yml
+- type: LLMsTxt
+  url: llms/amazon-data-pipeline-llms.txt
+- type: SecurityTxt
+  url: well-known/amazon-data-pipeline-aws-security.txt
+- type: WellKnown
+  url: well-known/amazon-data-pipeline-well-known.yml
+- type: Hosts
+  url: hosts/amazon-data-pipeline-hosts.yml
+- type: Vendors
+  url: vendors/amazon-data-pipeline-vendors.yml
+- type: SDKs
+  url: packages/amazon-data-pipeline-packages.yml
+- type: Packages
+  url: packages/amazon-data-pipeline-packages.yml
+- type: Pricing
+  url: https://aws.amazon.com/datapipeline/pricing/
+- type: APIReference
+  url: https://docs.aws.amazon.com/cli/latest/reference/datapipeline/index.html
+- type: GettingStarted
+  url: https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/what-is-rds
 - type: RateLimits
   url: rate-limits/amazon-data-pipeline-rate-limits.yml
 - type: FinOps
@@ -233,8 +175,6 @@ common:
   url: https://aws.amazon.com/premiumsupport/
 - type: GitHubOrganization
   url: https://github.com/aws
-- type: Console
-  url: https://console.aws.amazon.com/datapipeline/
 - type: Signup
   url: https://portal.aws.amazon.com/billing/signup
 - type: Login
@@ -250,68 +190,165 @@ common:
 - type: Features
   data:
   - name: Data-Driven Workflows
-    description: Define complex data processing workflows with activities, data nodes, schedules, and
-      preconditions using a declarative pipeline definition.
+    description: Define complex data processing workflows with activities, data nodes, schedules, and preconditions using a declarative pipeline
+      definition.
   - name: Multi-Service Integration
-    description: Move and transform data between Amazon S3, Amazon RDS, Amazon DynamoDB, Amazon Redshift,
-      and Amazon EMR in a single pipeline.
+    description: Move and transform data between Amazon S3, Amazon RDS, Amazon DynamoDB, Amazon Redshift, and Amazon EMR in a single pipeline.
   - name: Flexible Scheduling
-    description: Schedule pipeline runs at fixed intervals (hourly, daily, weekly) or trigger them based
-      on data availability preconditions.
+    description: Schedule pipeline runs at fixed intervals (hourly, daily, weekly) or trigger them based on data availability preconditions.
   - name: Automated Retry and Failure Handling
-    description: Configure automatic retries for failed activities with configurable retry intervals,
-      timeout settings, and failure notifications.
+    description: Configure automatic retries for failed activities with configurable retry intervals, timeout settings, and failure notifications.
   - name: On-Premises Data Support
-    description: Process data from on-premises databases and file systems using the Data Pipeline Task
-      Runner agent installed locally.
+    description: Process data from on-premises databases and file systems using the Data Pipeline Task Runner agent installed locally.
   - name: EMR Integration
-    description: Launch and manage Amazon EMR clusters as pipeline resources to run Hive, Pig, and MapReduce
-      jobs as part of data workflows.
+    description: Launch and manage Amazon EMR clusters as pipeline resources to run Hive, Pig, and MapReduce jobs as part of data workflows.
   - name: Pipeline Versioning
-    description: Manage active and latest pipeline definition versions, enabling updates to running pipelines
-      without disrupting current execution.
+    description: Manage active and latest pipeline definition versions, enabling updates to running pipelines without disrupting current execution.
 - type: UseCases
   data:
   - name: Daily ETL Workflows
-    description: Schedule daily extraction, transformation, and loading of data from relational databases
-      into S3 or Redshift for analytics processing.
+    description: Schedule daily extraction, transformation, and loading of data from relational databases into S3 or Redshift for analytics processing.
   - name: Log Processing Pipelines
-    description: Process application and server log files from S3 using EMR activities to generate aggregated
-      reports and analytics datasets.
+    description: Process application and server log files from S3 using EMR activities to generate aggregated reports and analytics datasets.
   - name: Database Migration
-    description: Migrate data between on-premises databases and AWS managed database services using scheduled
-      pipeline activities.
+    description: Migrate data between on-premises databases and AWS managed database services using scheduled pipeline activities.
   - name: Data Lake Ingestion
-    description: Automate the ingestion and transformation of raw data into structured formats in S3 data
-      lakes for downstream analytics.
+    description: Automate the ingestion and transformation of raw data into structured formats in S3 data lakes for downstream analytics.
   - name: Cross-Region Data Replication
-    description: Replicate DynamoDB tables or S3 data across AWS regions using scheduled pipeline copy
-      activities for disaster recovery.
+    description: Replicate DynamoDB tables or S3 data across AWS regions using scheduled pipeline copy activities for disaster recovery.
 - type: Integrations
   data:
   - name: Amazon S3
-    description: Primary data node type for reading input data and writing output data in pipeline ETL
-      activities using S3DataNode.
+    description: Primary data node type for reading input data and writing output data in pipeline ETL activities using S3DataNode.
   - name: Amazon EMR
-    description: Managed Hadoop/Spark cluster resource for running large-scale data processing activities
-      including Hive, Pig, and MapReduce jobs.
+    description: Managed Hadoop/Spark cluster resource for running large-scale data processing activities including Hive, Pig, and MapReduce jobs.
   - name: Amazon RDS
-    description: Relational database data node for SQL-based data extraction and loading between RDS instances
-      and S3 or Redshift.
+    description: Relational database data node for SQL-based data extraction and loading between RDS instances and S3 or Redshift.
   - name: Amazon DynamoDB
-    description: NoSQL data node for importing and exporting DynamoDB table data in pipeline activities
-      for batch processing workflows.
+    description: NoSQL data node for importing and exporting DynamoDB table data in pipeline activities for batch processing workflows.
   - name: Amazon Redshift
-    description: Data warehouse target for loading processed pipeline output data for business intelligence
-      and analytics queries.
+    description: Data warehouse target for loading processed pipeline output data for business intelligence and analytics queries.
   - name: AWS Glue
-    description: Modern alternative managed ETL service that can complement or replace Data Pipeline for
-      serverless data transformation workflows.
+    description: Modern alternative managed ETL service that can complement or replace Data Pipeline for serverless data transformation workflows.
   - name: Amazon CloudWatch
-    description: Monitor pipeline execution status, set up alarms for pipeline failures, and track activity
-      completion metrics.
+    description: Monitor pipeline execution status, set up alarms for pipeline failures, and track activity completion metrics.
 - type: Integrations
   url: https://aws.amazon.com/marketplace
+- type: UsageTerms
+  url: terms/amazon-data-pipeline-terms-of-service.yml
+- type: DataProcessing
+  url: privacy/amazon-data-pipeline-privacy-policy.yml
+- type: Attestations
+  url: compliance/amazon-data-pipeline-compliance.yml
+- type: Eligibility
+  url: eligibility/amazon-data-pipeline-eligibility.yml
+- type: AIPreferences
+  url: ai-preferences/amazon-data-pipeline-ai-preferences.yml
+
+apis:
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-objects-api
+  name: Amazon Data Pipeline Objects API
+  description: Operations for managing pipeline object definitions
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipeline Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipeline-objects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipeline-runs-api
+  name: Amazon Data Pipeline Runs API
+  description: Operations for managing pipeline execution and task runs
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipeline Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipeline-runs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-pipelines-api
+  name: Amazon Data Pipeline Pipelines API
+  description: Operations for managing data pipelines
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-tags-api
+  name: Amazon Data Pipeline Tags API
+  description: Operations for managing pipeline tags
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/datapipeline/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/datapipeline/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/pipeline-object-schema.json
+  - type: JSONSchema
+    url: json-schema/pipeline-description-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-data-pipeline-context.jsonld
+- aid: amazon-data-pipeline:amazon-data-pipeline-operations-api
+  name: Amazon Data Pipeline Data Pipeline Operations API
+  description: The Data Pipeline Operations API from Amazon Data Pipeline — 6 operation(s) for data pipeline operations.
+  humanURL: https://aws.amazon.com/datapipeline/
+  baseURL: https://datapipeline.amazonaws.com
+  tags:
+  - Data Pipeline Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-data-pipeline-operations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-set-task-status-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-report-task-runner-heartbeat-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-query-objects-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-poll-for-task-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-set-status-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-data-pipeline-query-objects-output-schema.json
+
 integrations:
 - name: Sign in
 - name: Agent Mode
@@ -322,9 +359,12 @@ integrations:
 - name: Become a Channel Partner
 - name: Sell in AWS Marketplace
 - name: Manage Your Account
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+
 x-parent: amazon-web-services
+
 x-relationship: product
+x-enrichment:
+  date: '2026-11-11'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v6
